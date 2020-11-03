@@ -15,7 +15,7 @@ namespace Match3.Configurations
         public CellView ViewExample => _view;
 
         [SerializeField] private string _name;
-        [SerializeField] private float _weight;
+        [SerializeField] private float _weight = 0;
         [SerializeField] private CellView _view;
         [SerializeField] private CellView _combo4VerticalView;
         [SerializeField] private CellView _combo4HorizontalView;
