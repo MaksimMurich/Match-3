@@ -12,30 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7635b8635a126ec4ca72a9e4323c5403, type: 3}
   m_Name: Configuration
   m_EditorClassIdentifier: 
-  LevelWidth: 3
-  LevelHeight: 3
-  CellConfigurations:
-  - _name: red
-    _weight: 100
-    _view: {fileID: 0}
+  _levelWidth: 3
+  _levelHeight: 3
+  _combo4RevardMultiplayer: 2
+  _combo5RevardMultiplayer: 4
+  _cellConfigurations:
+  - _weight: 200
+    _view: {fileID: 1460295296006681145, guid: ecae1684d2773c041b5e44983b0a2f17, type: 3}
     _combo4VerticalView: {fileID: 0}
     _combo4HorizontalView: {fileID: 0}
     _combo5View: {fileID: 0}
-  - _name: green
-    _weight: 50
-    _view: {fileID: 0}
+  - _weight: 150
+    _view: {fileID: 3507420653472728697, guid: 678c4ed5747337244a4a05d5580902a5, type: 3}
     _combo4VerticalView: {fileID: 0}
     _combo4HorizontalView: {fileID: 0}
     _combo5View: {fileID: 0}
-  - _name: blue
-    _weight: 25
-    _view: {fileID: 0}
+  - _weight: 100
+    _view: {fileID: 8306811637373637970, guid: 32f48365842a43c4998507df339e84e0, type: 3}
     _combo4VerticalView: {fileID: 0}
     _combo4HorizontalView: {fileID: 0}
     _combo5View: {fileID: 0}
-  - _name: rare
-    _weight: 12
-    _view: {fileID: 0}
+  - _weight: 50
+    _view: {fileID: 6851294913485200774, guid: 9692d86436b13164ea8ea84c3d49a040, type: 3}
     _combo4VerticalView: {fileID: 0}
     _combo4HorizontalView: {fileID: 0}
     _combo5View: {fileID: 0}
