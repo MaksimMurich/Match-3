@@ -5,7 +5,6 @@ namespace Match3.Configurations
     [CreateAssetMenu]
     public class Configuration : ScriptableObject
     {
-        public bool ShowSettingsOnStart = true;
         public int LevelWidth = 9;
         public int LevelHeight = 5;
 
