@@ -28,11 +28,16 @@ namespace Match3
 
             _systems
                 // register systems
+
+                // initialization
                 .Add(new SetCellConfigSpawnRangesSystem())
                 .Add(new InitializeFieldSystem())
                 .Add(new CreateCellsViewSystem())
                 .Add(new SetCellViewPositionSystem())
                 .Add(new ConfigurateCameraSystem())
+
+                // user input event handlers
+                .Add(new OpenSettingsSystem())
                 .Add(new ChangeSettingsSystem())
                 .Add(new RestartSystem())
 

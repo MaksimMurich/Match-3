@@ -11,8 +11,10 @@ namespace Match3.Systems.Game
 
         public void Init()
         {
-            _sceneData.SettingsView.ChangeFieldHeight += ChangeFieldHeightEventHandler;
-            _sceneData.SettingsView.ChangeFieldWidth += ChangeFieldHeightEventWidth;
+            _sceneData.SettingsView.SetSettings(_configuration.LevelWidth, _configuration.LevelHeight);
+
+            _sceneData.SettingsView.ChangeFieldHeightEvent += ChangeFieldHeightEventHandler;
+            _sceneData.SettingsView.ChangeFieldWidthEvent += ChangeFieldHeightEventWidth;
         }
 
         private void ChangeFieldHeightEventWidth(int value)

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7635b8635a126ec4ca72a9e4323c5403, type: 3}
   m_Name: Configuration
   m_EditorClassIdentifier: 
-  _levelWidth: 9
-  _levelHeight: 3
+  LevelWidth: 8
+  LevelHeight: 4
   _combo4RewardMultiplayer: 2
   _combo5RewardMultiplayer: 4
   _cellConfigurations:
