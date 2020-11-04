@@ -1,6 +1,7 @@
 using Leopotam.Ecs;
 using Match3.Assets.Scripts.Systems.Game.Initialization;
 using Match3.Configurations;
+using Match3.Systems.Game;
 using Match3.Systems.Game.Initialization;
 using UnityEngine;
 
@@ -32,6 +33,8 @@ namespace Match3
                 .Add(new CreateCellsViewSystem())
                 .Add(new SetCellViewPositionSystem())
                 .Add(new ConfigurateCameraSystem())
+                .Add(new ChangeSettingsSystem())
+                .Add(new RestartSystem())
 
                 // register one-frame components (order is important), for example:
                 // .OneFrame<TestComponent1> ()
