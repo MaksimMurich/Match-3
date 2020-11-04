@@ -2,7 +2,7 @@
 using Match3.Configurations;
 using System;
 
-namespace Match3.Systems.Game
+namespace Match3.Systems.Game.UserInput
 {
     public sealed class ChangeSettingsSystem : IEcsInitSystem
     {

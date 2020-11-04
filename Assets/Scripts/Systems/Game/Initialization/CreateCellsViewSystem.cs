@@ -7,14 +7,15 @@ namespace Match3.Systems.Game.Initialization
 {
     public sealed class CreateCellsViewSystem : IEcsInitSystem
     {
-        private readonly EcsFilter<Cell> _cellsFilter = null;
+        private readonly EcsFilter<Cell> _filter = null;
 
         public void Init()
         {
-            foreach (int index in _cellsFilter)
+            foreach (int index in _filter)
             {
-                ref Cell cell = ref _cellsFilter.Get1(index);
+                ref Cell cell = ref _filter.Get1(index);
                 CellView view = Object.Instantiate(cell.Configuration.ViewExample);
+                view.Entity = _filter.GetEntity(index);
                 cell.View = view;
             }
         }

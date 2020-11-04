@@ -8,7 +8,7 @@ namespace Match3.Configurations
     public class CellConfiguration
     {
         [Tooltip("weight of current cell, when choosing a random cell for spawn")]
-        [SerializeField] private float _spawnWeight = 0;
+        [SerializeField] private float _spawnWeight = 10;
         [SerializeField] private CellView _view = null;
         [SerializeField] private CellView _combo4VerticalView = null;
         [SerializeField] private CellView _combo4HorizontalView = null;

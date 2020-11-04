@@ -1,6 +1,6 @@
 ﻿using Leopotam.Ecs;
 
-namespace Match3.Systems.Game
+namespace Match3.Systems.Game.UserInput
 {
     public sealed class OpenSettingsSystem : IEcsInitSystem
     {
