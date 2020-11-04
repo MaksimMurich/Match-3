@@ -7,47 +7,55 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace Leopotam.Ecs {
+namespace Leopotam.Ecs
+{
     /// <summary>
     /// Entity descriptor.
     /// </summary>
-    public struct EcsEntity {
+    public struct EcsEntity
+    {
         internal int Id;
         internal ushort Gen;
         internal EcsWorld Owner;
 
-        public static readonly EcsEntity Null = new EcsEntity ();
+        public static readonly EcsEntity Null = new EcsEntity();
 
-        [MethodImpl (MethodImplOptions.AggressiveInlining)]
-        public static bool operator == (in EcsEntity lhs, in EcsEntity rhs) {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator ==(in EcsEntity lhs, in EcsEntity rhs)
+        {
             return lhs.Id == rhs.Id && lhs.Gen == rhs.Gen;
         }
 
-        [MethodImpl (MethodImplOptions.AggressiveInlining)]
-        public static bool operator != (in EcsEntity lhs, in EcsEntity rhs) {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator !=(in EcsEntity lhs, in EcsEntity rhs)
+        {
             return lhs.Id != rhs.Id || lhs.Gen != rhs.Gen;
         }
 
-        [MethodImpl (MethodImplOptions.AggressiveInlining)]
-        public override int GetHashCode () {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override int GetHashCode()
+        {
             // ReSharper disable NonReadonlyMemberInGetHashCode
             // not readonly for performance reason - no ctor calls for EcsEntity struct.
-            return Id.GetHashCode () ^ (Gen.GetHashCode () << 2);
+            return Id.GetHashCode() ^ (Gen.GetHashCode() << 2);
             // ReSharper restore NonReadonlyMemberInGetHashCode
         }
 
-        [MethodImpl (MethodImplOptions.AggressiveInlining)]
-        public override bool Equals (object other) {
-            if (!(other is EcsEntity)) {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override bool Equals(object other)
+        {
+            if (!(other is EcsEntity))
+            {
                 return false;
             }
-            var rhs = (EcsEntity) other;
+            var rhs = (EcsEntity)other;
             return Id == rhs.Id && Gen == rhs.Gen;
         }
 
 #if DEBUG
-        public override string ToString () {
-            return this.IsNull () ? "Entity-Null" : $"Entity-{Id}:{Gen}";
+        public override string ToString()
+        {
+            return this.IsNull() ? "Entity-Null" : $"Entity-{Id}:{Gen}";
         }
 #endif
     }
@@ -56,7 +64,8 @@ namespace Leopotam.Ecs {
     [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.NullChecks, false)]
     [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.ArrayBoundsChecks, false)]
 #endif
-    public static class EcsEntityExtensions {
+    public static class EcsEntityExtensions
+    {
         /// <summary>
         /// Attaches or finds already attached component to entity.
         /// </summary>
@@ -65,35 +74,40 @@ namespace Leopotam.Ecs {
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.NullChecks, false)]
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.ArrayBoundsChecks, false)]
 #endif
-        [MethodImpl (MethodImplOptions.AggressiveInlining)]
-        public static ref T Set<T> (in this EcsEntity entity) where T : struct {
-            ref var entityData = ref entity.Owner.GetEntityData (entity);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ref T Set<T>(in this EcsEntity entity) where T : struct
+        {
+            ref var entityData = ref entity.Owner.GetEntityData(entity);
 #if DEBUG
-            if (entityData.Gen != entity.Gen) { throw new Exception ("Cant add component to destroyed entity."); }
+            if (entityData.Gen != entity.Gen) { throw new Exception("Cant add component to destroyed entity."); }
 #endif
             var typeIdx = EcsComponentType<T>.TypeIndex;
             // check already attached components.
-            for (int i = 0, iiMax = entityData.ComponentsCountX2; i < iiMax; i += 2) {
-                if (entityData.Components[i] == typeIdx) {
-                    return ref ((EcsComponentPool<T>) entity.Owner.ComponentPools[typeIdx]).Items[entityData.Components[i + 1]];
+            for (int i = 0, iiMax = entityData.ComponentsCountX2; i < iiMax; i += 2)
+            {
+                if (entityData.Components[i] == typeIdx)
+                {
+                    return ref ((EcsComponentPool<T>)entity.Owner.ComponentPools[typeIdx]).Items[entityData.Components[i + 1]];
                 }
             }
             // attach new component.
-            if (entityData.Components.Length == entityData.ComponentsCountX2) {
-                Array.Resize (ref entityData.Components, entityData.ComponentsCountX2 << 1);
+            if (entityData.Components.Length == entityData.ComponentsCountX2)
+            {
+                Array.Resize(ref entityData.Components, entityData.ComponentsCountX2 << 1);
             }
             entityData.Components[entityData.ComponentsCountX2++] = typeIdx;
 
-            var pool = entity.Owner.GetPool<T> ();
+            var pool = entity.Owner.GetPool<T>();
 
-            var idx = pool.New ();
+            var idx = pool.New();
             entityData.Components[entityData.ComponentsCountX2++] = idx;
 #if DEBUG
-            for (var ii = 0; ii < entity.Owner.DebugListeners.Count; ii++) {
-                entity.Owner.DebugListeners[ii].OnComponentListChanged (entity);
+            for (var ii = 0; ii < entity.Owner.DebugListeners.Count; ii++)
+            {
+                entity.Owner.DebugListeners[ii].OnComponentListChanged(entity);
             }
 #endif
-            entity.Owner.UpdateFilters (typeIdx, entity, entityData);
+            entity.Owner.UpdateFilters(typeIdx, entity, entityData);
             return ref pool.Items[idx];
         }
 
@@ -105,15 +119,18 @@ namespace Leopotam.Ecs {
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.NullChecks, false)]
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.ArrayBoundsChecks, false)]
 #endif
-        [MethodImpl (MethodImplOptions.AggressiveInlining)]
-        public static bool Has<T> (in this EcsEntity entity) where T : struct {
-            ref var entityData = ref entity.Owner.GetEntityData (entity);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool Has<T>(in this EcsEntity entity) where T : struct
+        {
+            ref var entityData = ref entity.Owner.GetEntityData(entity);
 #if DEBUG
-            if (entityData.Gen != entity.Gen) { throw new Exception ("Cant check component on destroyed entity."); }
+            if (entityData.Gen != entity.Gen) { throw new Exception("Cant check component on destroyed entity."); }
 #endif
             var typeIdx = EcsComponentType<T>.TypeIndex;
-            for (int i = 0, iMax = entityData.ComponentsCountX2; i < iMax; i += 2) {
-                if (entityData.Components[i] == typeIdx) {
+            for (int i = 0, iMax = entityData.ComponentsCountX2; i < iMax; i += 2)
+            {
+                if (entityData.Components[i] == typeIdx)
+                {
                     return true;
                 }
             }
@@ -128,42 +145,49 @@ namespace Leopotam.Ecs {
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.NullChecks, false)]
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.ArrayBoundsChecks, false)]
 #endif
-        [MethodImpl (MethodImplOptions.AggressiveInlining)]
-        public static void Unset<T> (in this EcsEntity entity) where T : struct {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Unset<T>(in this EcsEntity entity) where T : struct
+        {
             var typeIndex = EcsComponentType<T>.TypeIndex;
-            ref var entityData = ref entity.Owner.GetEntityData (entity);
+            ref var entityData = ref entity.Owner.GetEntityData(entity);
             // save copy to local var for protect from cleanup fields outside.
             var owner = entity.Owner;
 #if DEBUG
-            if (entityData.Gen != entity.Gen) { throw new Exception ("Cant touch destroyed entity."); }
+            if (entityData.Gen != entity.Gen) { throw new Exception("Cant touch destroyed entity."); }
 #endif
-            for (int i = 0, iMax = entityData.ComponentsCountX2; i < iMax; i += 2) {
-                if (entityData.Components[i] == typeIndex) {
-                    owner.UpdateFilters (-typeIndex, entity, entityData);
+            for (int i = 0, iMax = entityData.ComponentsCountX2; i < iMax; i += 2)
+            {
+                if (entityData.Components[i] == typeIndex)
+                {
+                    owner.UpdateFilters(-typeIndex, entity, entityData);
 #if DEBUG
                     // var removedComponent = owner.ComponentPools[typeIndex].GetItem (entityData.Components[i + 1]);
 #endif
-                    owner.ComponentPools[typeIndex].Recycle (entityData.Components[i + 1]);
+                    owner.ComponentPools[typeIndex].Recycle(entityData.Components[i + 1]);
                     // remove current item and move last component to this gap.
                     entityData.ComponentsCountX2 -= 2;
-                    if (i < entityData.ComponentsCountX2) {
+                    if (i < entityData.ComponentsCountX2)
+                    {
                         entityData.Components[i] = entityData.Components[entityData.ComponentsCountX2];
                         entityData.Components[i + 1] = entityData.Components[entityData.ComponentsCountX2 + 1];
                     }
 #if DEBUG
-                    for (var ii = 0; ii < entity.Owner.DebugListeners.Count; ii++) {
-                        entity.Owner.DebugListeners[ii].OnComponentListChanged (entity);
+                    for (var ii = 0; ii < entity.Owner.DebugListeners.Count; ii++)
+                    {
+                        entity.Owner.DebugListeners[ii].OnComponentListChanged(entity);
                     }
 #endif
                     break;
                 }
             }
             // unrolled and inlined Destroy() call.
-            if (entityData.ComponentsCountX2 == 0) {
-                owner.RecycleEntityData (entity.Id, ref entityData);
+            if (entityData.ComponentsCountX2 == 0)
+            {
+                owner.RecycleEntityData(entity.Id, ref entityData);
 #if DEBUG
-                for (var ii = 0; ii < entity.Owner.DebugListeners.Count; ii++) {
-                    owner.DebugListeners[ii].OnEntityDestroyed (entity);
+                for (var ii = 0; ii < entity.Owner.DebugListeners.Count; ii++)
+                {
+                    owner.DebugListeners[ii].OnEntityDestroyed(entity);
                 }
 #endif
             }
@@ -178,15 +202,18 @@ namespace Leopotam.Ecs {
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.NullChecks, false)]
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.ArrayBoundsChecks, false)]
 #endif
-        [MethodImpl (MethodImplOptions.AggressiveInlining)]
-        public static int GetComponentIndexInPool<T> (in this EcsEntity entity) where T : struct {
-            ref var entityData = ref entity.Owner.GetEntityData (entity);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int GetComponentIndexInPool<T>(in this EcsEntity entity) where T : struct
+        {
+            ref var entityData = ref entity.Owner.GetEntityData(entity);
 #if DEBUG
-            if (entityData.Gen != entity.Gen) { throw new Exception ("Cant check component on destroyed entity."); }
+            if (entityData.Gen != entity.Gen) { throw new Exception("Cant check component on destroyed entity."); }
 #endif
             var typeIdx = EcsComponentType<T>.TypeIndex;
-            for (int i = 0, iMax = entityData.ComponentsCountX2; i < iMax; i += 2) {
-                if (entityData.Components[i] == typeIdx) {
+            for (int i = 0, iMax = entityData.ComponentsCountX2; i < iMax; i += 2)
+            {
+                if (entityData.Components[i] == typeIdx)
+                {
                     return entityData.Components[i + 1];
                 }
             }
@@ -196,31 +223,36 @@ namespace Leopotam.Ecs {
         /// <summary>
         /// Gets internal identifier.
         /// </summary>
-        public static int GetInternalId (in this EcsEntity entity) {
+        public static int GetInternalId(in this EcsEntity entity)
+        {
             return entity.Id;
         }
-        
+
         /// <summary>
         /// Gets internal generation.
         /// </summary>
-        public static int GetInternalGen (in this EcsEntity entity) {
+        public static int GetInternalGen(in this EcsEntity entity)
+        {
             return entity.Gen;
         }
 
-        [MethodImpl (MethodImplOptions.AggressiveInlining)]
-        public static EcsComponentRef<T> Ref<T> (in this EcsEntity entity) where T : struct {
-            ref var entityData = ref entity.Owner.GetEntityData (entity);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static EcsComponentRef<T> Ref<T>(in this EcsEntity entity) where T : struct
+        {
+            ref var entityData = ref entity.Owner.GetEntityData(entity);
 #if DEBUG
-            if (entityData.Gen != entity.Gen) { throw new Exception ("Cant wrap component on destroyed entity."); }
+            if (entityData.Gen != entity.Gen) { throw new Exception("Cant wrap component on destroyed entity."); }
 #endif
             var typeIdx = EcsComponentType<T>.TypeIndex;
-            for (int i = 0, iMax = entityData.ComponentsCountX2; i < iMax; i += 2) {
-                if (entityData.Components[i] == typeIdx) {
-                    return ((EcsComponentPool<T>) entity.Owner.ComponentPools[entityData.Components[i]]).Ref (entityData.Components[i + 1]);
+            for (int i = 0, iMax = entityData.ComponentsCountX2; i < iMax; i += 2)
+            {
+                if (entityData.Components[i] == typeIdx)
+                {
+                    return ((EcsComponentPool<T>)entity.Owner.ComponentPools[entityData.Components[i]]).Ref(entityData.Components[i + 1]);
                 }
             }
 #if DEBUG
-            throw new Exception ($"\"{typeof (T).Name}\" component not exists on entity for wrapping.");
+            throw new Exception($"\"{typeof(T).Name}\" component not exists on entity for wrapping.");
 #else
             return default;
 #endif
@@ -233,33 +265,37 @@ namespace Leopotam.Ecs {
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.NullChecks, false)]
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.ArrayBoundsChecks, false)]
 #endif
-        [MethodImpl (MethodImplOptions.AggressiveInlining)]
-        public static void Destroy (in this EcsEntity entity) {
-            ref var entityData = ref entity.Owner.GetEntityData (entity);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Destroy(in this EcsEntity entity)
+        {
+            ref var entityData = ref entity.Owner.GetEntityData(entity);
             // save copy to local var for protect from cleanup fields outside.
             EcsEntity savedEntity;
             savedEntity.Id = entity.Id;
             savedEntity.Gen = entity.Gen;
             savedEntity.Owner = entity.Owner;
 #if DEBUG
-            if (entityData.Gen != entity.Gen) { throw new Exception ("Cant touch destroyed entity."); }
+            if (entityData.Gen != entity.Gen) { throw new Exception("Cant touch destroyed entity."); }
 #endif
             // remove components first.
-            for (var i = entityData.ComponentsCountX2 - 2; i >= 0; i -= 2) {
-                savedEntity.Owner.UpdateFilters (-entityData.Components[i], savedEntity, entityData);
-                savedEntity.Owner.ComponentPools[entityData.Components[i]].Recycle (entityData.Components[i + 1]);
+            for (var i = entityData.ComponentsCountX2 - 2; i >= 0; i -= 2)
+            {
+                savedEntity.Owner.UpdateFilters(-entityData.Components[i], savedEntity, entityData);
+                savedEntity.Owner.ComponentPools[entityData.Components[i]].Recycle(entityData.Components[i + 1]);
                 entityData.ComponentsCountX2 -= 2;
 #if DEBUG
-                for (var ii = 0; ii < savedEntity.Owner.DebugListeners.Count; ii++) {
-                    savedEntity.Owner.DebugListeners[ii].OnComponentListChanged (savedEntity);
+                for (var ii = 0; ii < savedEntity.Owner.DebugListeners.Count; ii++)
+                {
+                    savedEntity.Owner.DebugListeners[ii].OnComponentListChanged(savedEntity);
                 }
 #endif
             }
             entityData.ComponentsCountX2 = 0;
-            savedEntity.Owner.RecycleEntityData (savedEntity.Id, ref entityData);
+            savedEntity.Owner.RecycleEntityData(savedEntity.Id, ref entityData);
 #if DEBUG
-            for (var ii = 0; ii < savedEntity.Owner.DebugListeners.Count; ii++) {
-                savedEntity.Owner.DebugListeners[ii].OnEntityDestroyed (savedEntity);
+            for (var ii = 0; ii < savedEntity.Owner.DebugListeners.Count; ii++)
+            {
+                savedEntity.Owner.DebugListeners[ii].OnEntityDestroyed(savedEntity);
             }
 #endif
         }
@@ -267,8 +303,9 @@ namespace Leopotam.Ecs {
         /// <summary>
         /// Is entity null-ed.
         /// </summary>
-        [MethodImpl (MethodImplOptions.AggressiveInlining)]
-        public static bool IsNull (in this EcsEntity entity) {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNull(in this EcsEntity entity)
+        {
             return entity.Id == 0 && entity.Gen == 0;
         }
 
@@ -279,10 +316,11 @@ namespace Leopotam.Ecs {
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.NullChecks, false)]
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.ArrayBoundsChecks, false)]
 #endif
-        [MethodImpl (MethodImplOptions.AggressiveInlining)]
-        public static bool IsAlive (in this EcsEntity entity) {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsAlive(in this EcsEntity entity)
+        {
             if (entity.Owner == null) { return false; }
-            ref var entityData = ref entity.Owner.GetEntityData (entity);
+            ref var entityData = ref entity.Owner.GetEntityData(entity);
             return entityData.Gen == entity.Gen && entityData.ComponentsCountX2 >= 0;
         }
 
@@ -293,11 +331,12 @@ namespace Leopotam.Ecs {
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.NullChecks, false)]
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.ArrayBoundsChecks, false)]
 #endif
-        [MethodImpl (MethodImplOptions.AggressiveInlining)]
-        public static int GetComponentsCount (in this EcsEntity entity) {
-            ref var entityData = ref entity.Owner.GetEntityData (entity);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int GetComponentsCount(in this EcsEntity entity)
+        {
+            ref var entityData = ref entity.Owner.GetEntityData(entity);
 #if DEBUG
-            if (entityData.Gen != entity.Gen) { throw new Exception ("Cant touch destroyed entity."); }
+            if (entityData.Gen != entity.Gen) { throw new Exception("Cant touch destroyed entity."); }
 #endif
             return entityData.ComponentsCountX2 <= 0 ? 0 : (entityData.ComponentsCountX2 >> 1);
         }
@@ -308,16 +347,19 @@ namespace Leopotam.Ecs {
         /// <param name="entity">Entity.</param>
         /// <param name="list">List to put results in it. if null - will be created. If not enough space - will be resized.</param>
         /// <returns>Amount of components in list.</returns>
-        public static int GetComponentTypes (in this EcsEntity entity, ref Type[] list) {
-            ref var entityData = ref entity.Owner.GetEntityData (entity);
+        public static int GetComponentTypes(in this EcsEntity entity, ref Type[] list)
+        {
+            ref var entityData = ref entity.Owner.GetEntityData(entity);
 #if DEBUG
-            if (entityData.Gen != entity.Gen) { throw new Exception ("Cant touch destroyed entity."); }
+            if (entityData.Gen != entity.Gen) { throw new Exception("Cant touch destroyed entity."); }
 #endif
             var itemsCount = entityData.ComponentsCountX2 >> 1;
-            if (list == null || list.Length < itemsCount) {
+            if (list == null || list.Length < itemsCount)
+            {
                 list = new Type[itemsCount];
             }
-            for (int i = 0, j = 0, iMax = entityData.ComponentsCountX2; i < iMax; i += 2, j++) {
+            for (int i = 0, j = 0, iMax = entityData.ComponentsCountX2; i < iMax; i += 2, j++)
+            {
                 list[j] = entity.Owner.ComponentPools[entityData.Components[i]].ItemType;
             }
             return itemsCount;
@@ -329,17 +371,20 @@ namespace Leopotam.Ecs {
         /// <param name="entity">Entity.</param>
         /// <param name="list">List to put results in it. if null - will be created. If not enough space - will be resized.</param>
         /// <returns>Amount of components in list.</returns>
-        public static int GetComponentValues (in this EcsEntity entity, ref object[] list) {
-            ref var entityData = ref entity.Owner.GetEntityData (entity);
+        public static int GetComponentValues(in this EcsEntity entity, ref object[] list)
+        {
+            ref var entityData = ref entity.Owner.GetEntityData(entity);
 #if DEBUG
-            if (entityData.Gen != entity.Gen) { throw new Exception ("Cant touch destroyed entity."); }
+            if (entityData.Gen != entity.Gen) { throw new Exception("Cant touch destroyed entity."); }
 #endif
             var itemsCount = entityData.ComponentsCountX2 >> 1;
-            if (list == null || list.Length < itemsCount) {
+            if (list == null || list.Length < itemsCount)
+            {
                 list = new object[itemsCount];
             }
-            for (int i = 0, j = 0, iMax = entityData.ComponentsCountX2; i < iMax; i += 2, j++) {
-                list[j] = entity.Owner.ComponentPools[entityData.Components[i]].GetItem (entityData.Components[i + 1]);
+            for (int i = 0, j = 0, iMax = entityData.ComponentsCountX2; i < iMax; i += 2, j++)
+            {
+                list[j] = entity.Owner.ComponentPools[entityData.Components[i]].GetItem(entityData.Components[i + 1]);
             }
             return itemsCount;
         }
