@@ -7,7 +7,6 @@ namespace Match3.Systems.Game.Initialization
 {
     public sealed class SetCellViewPositionSystem : IEcsInitSystem
     {
-        private readonly Configuration _configuration = null;
         private readonly EcsFilter<Cell, Vector2Int> _cellsFilter = null;
 
         public void Init()
@@ -16,7 +15,7 @@ namespace Match3.Systems.Game.Initialization
             {
                 Cell cell = _cellsFilter.Get1(index);
                 Vector2Int position = _cellsFilter.Get2(index);
-                cell.View.transform.position = new Vector2(position.x * _configuration.CellWidth, position.y * _configuration.CellHeight);
+                cell.View.transform.position = new Vector2(position.x, position.y);
             }
         }
     }

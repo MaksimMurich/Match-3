@@ -1,4 +1,5 @@
 using Leopotam.Ecs;
+using Match3.Assets.Scripts.Systems.Game.Initialization;
 using Match3.Configurations;
 using Match3.Systems.Game.Initialization;
 using UnityEngine;
@@ -8,6 +9,8 @@ namespace Match3
     sealed class EcsStartup : MonoBehaviour
     {
         [SerializeField] private Configuration _configuration = null;
+        [SerializeField] private SceneData _sceneData = null;
+        private readonly GameField _gameField = new GameField();
 
         private EcsWorld _world;
         private EcsSystems _systems;
@@ -28,14 +31,16 @@ namespace Match3
                 .Add(new InitializeFieldSystem())
                 .Add(new CreateCellsViewSystem())
                 .Add(new SetCellViewPositionSystem())
+                .Add(new ConfigurateCameraSystem())
 
                 // register one-frame components (order is important), for example:
                 // .OneFrame<TestComponent1> ()
                 // .OneFrame<TestComponent2> ()
 
                 // inject service instances here (order doesn't important), for example:
+                .Inject(_gameField)
                 .Inject(_configuration)
-                .Inject(new GameField())
+                .Inject(_sceneData)
                 .Init();
         }
 
