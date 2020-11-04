@@ -1,6 +1,6 @@
 using Leopotam.Ecs;
 using Match3.Configurations;
-using Match3.Systems;
+using Match3.Systems.Game.Initialization;
 using UnityEngine;
 
 namespace Match3
@@ -14,8 +14,6 @@ namespace Match3
 
         void Start()
         {
-            // void can be switched to IEnumerator for support coroutines.
-
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
 
@@ -28,6 +26,8 @@ namespace Match3
                 // register systems
                 .Add(new SetCellConfigSpawnRangesSystem())
                 .Add(new InitializeFieldSystem())
+                .Add(new CreateCellsViewSystem())
+                .Add(new SetCellViewPositionSystem())
 
                 // register one-frame components (order is important), for example:
                 // .OneFrame<TestComponent1> ()
@@ -36,7 +36,6 @@ namespace Match3
                 // inject service instances here (order doesn't important), for example:
                 .Inject(_configuration)
                 .Inject(new GameField())
-                // .Inject (new NavMeshSupport ())
                 .Init();
         }
 

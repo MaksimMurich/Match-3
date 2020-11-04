@@ -2,7 +2,7 @@
 using Match3.Configurations;
 using System.Linq;
 
-namespace Match3.Systems
+namespace Match3.Systems.Game.Initialization
 {
     public sealed class SetCellConfigSpawnRangesSystem : IEcsInitSystem
     {
@@ -17,16 +17,9 @@ namespace Match3.Systems
             foreach (CellConfiguration cellConfiguration in _configuration.CellConfigurations)
             {
                 float min = max;
-                max = min + 100 * cellConfiguration.Weight/sumSpawnWeights;
+                max = min + 100 * cellConfiguration.Weight / sumSpawnWeights;
                 cellConfiguration.SetSpawnRange(min, max);
             }
-        }
-    }
-
-    public sealed class CreateCellsViewSystem : IEcsInitSystem
-    {
-        public void Init()
-        {
         }
     }
 }
