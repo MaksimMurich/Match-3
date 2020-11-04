@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Configuration
   m_EditorClassIdentifier: 
   _levelWidth: 9
-  _levelHeight: 7
+  _levelHeight: 3
   _combo4RewardMultiplayer: 2
   _combo5RewardMultiplayer: 4
   _cellConfigurations:
