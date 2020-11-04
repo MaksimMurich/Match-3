@@ -1,7 +1,11 @@
-﻿namespace Match3
+﻿using Leopotam.Ecs;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Match3
 {
     public class GameField
     {
-        //private readonly Cell
+        public readonly Dictionary<Vector2Int, EcsEntity> Cells = new Dictionary<Vector2Int, EcsEntity>();
     }
 }

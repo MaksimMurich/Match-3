@@ -5,7 +5,6 @@ namespace Match3.Configurations
     [CreateAssetMenu]
     public class Configuration : ScriptableObject
     {
-
         [SerializeField] private int _levelWidth = 3;
         [SerializeField] private int _levelHeight = 3;
         [SerializeField] private float _combo4RewardMultiplayer = 2f;
@@ -18,32 +17,6 @@ namespace Match3.Configurations
         public int LevelHeight => _levelHeight;
         public float Combo4Configuration => _combo4RewardMultiplayer;
         public float Combo5Configuration => _combo5RewardMultiplayer;
-
-        public CellConfiguration[] CellConfigurations
-        {
-            get
-            {
-                if (!_cellRangesGenerated)
-                {
-                    GenerateCellRanges();
-                }
-
-                return _cellConfigurations;
-            }
-        }
-
-        private void GenerateCellRanges()
-        {
-            float currentMax = 0;
-
-            for (int i = 0; i < _cellConfigurations.Length; i++)
-            {
-                float min = currentMax;
-                currentMax += _cellConfigurations[i].Weight;
-                _cellConfigurations[i].SetSpawnRange(currentMax, currentMax);
-            }
-
-            _cellRangesGenerated = true;
-        }
+        public CellConfiguration[] CellConfigurations => _cellConfigurations;
     }
 }
