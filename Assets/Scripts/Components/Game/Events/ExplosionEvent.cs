@@ -1,4 +1,4 @@
-﻿namespace Match3.Components.Game
+﻿namespace Match3.Components.Game.Events
 {
     public struct ExplosionEvent
     {

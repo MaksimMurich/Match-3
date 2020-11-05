@@ -1,5 +1,6 @@
 ﻿using Leopotam.Ecs;
 using Match3.Components.Game;
+using Match3.Components.Game.Events;
 using Match3.Configurations;
 using System;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace Match3.Systems.Game
 {
     public sealed class DetectSwapChainsSystem : IEcsRunSystem
     {
+        private readonly GameField _gameField = null;
         private readonly GameField _gameField = null;
         private readonly Configuration _configuration = null;
         private readonly EcsFilter<Cell, Vector2Int, SwapCompleateEvent> _filter = null;
