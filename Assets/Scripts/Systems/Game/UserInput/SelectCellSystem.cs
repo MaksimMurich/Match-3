@@ -34,6 +34,4 @@ namespace Match3.Systems.Game.UserInput
             cellView.Entity.Set<Selected>();
         }
     }
-
-    public sealed class CellSwapSystem
 }

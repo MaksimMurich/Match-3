@@ -44,6 +44,7 @@ namespace Match3
                 .Add(new RestartSystem())
                 .Add(new SelectCellSystem())
                 .Add(new DeselectCellSystem())
+                .Add(new UserSwapSystem())
 
                 // view effects
                 .Add(new ScaleSelectedCellSystem())
