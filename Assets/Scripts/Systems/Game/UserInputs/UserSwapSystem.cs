@@ -3,7 +3,7 @@ using Match3.Components.Game;
 using Match3.Configurations;
 using UnityEngine;
 
-namespace Match3.Systems.Game.UserInput
+namespace Match3.Systems.Game.UserInputs
 {
     public sealed class UserSwapSystem : IEcsRunSystem
     {

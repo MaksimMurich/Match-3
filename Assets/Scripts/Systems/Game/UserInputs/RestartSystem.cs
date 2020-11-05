@@ -1,7 +1,7 @@
 ﻿using Leopotam.Ecs;
 using UnityEngine.SceneManagement;
 
-namespace Match3.Systems.Game.UserInput
+namespace Match3.Systems.Game.UserInputs
 {
     public sealed class RestartSystem : IEcsInitSystem
     {

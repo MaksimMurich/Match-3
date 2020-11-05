@@ -2,7 +2,7 @@
 using Match3.Components.Game;
 using UnityEngine;
 
-namespace Match3.Systems.Game.UserInput
+namespace Match3.Systems.Game.UserInputs
 {
     public sealed class DeselectCellSystem : IEcsRunSystem
     {
@@ -10,12 +10,12 @@ namespace Match3.Systems.Game.UserInput
 
         public void Run()
         {
-            if(_filter.GetEntitiesCount() == 0 || !Input.GetMouseButtonUp(0))
+            if (_filter.GetEntitiesCount() == 0 || !Input.GetMouseButtonUp(0))
             {
                 return;
             }
 
-            foreach(int index in _filter)
+            foreach (int index in _filter)
             {
                 EcsEntity cell = _filter.GetEntity(index);
                 cell.Unset<Selected>();

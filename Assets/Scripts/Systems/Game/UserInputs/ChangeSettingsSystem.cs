@@ -1,8 +1,7 @@
 ﻿using Leopotam.Ecs;
 using Match3.Configurations;
-using System;
 
-namespace Match3.Systems.Game.UserInput
+namespace Match3.Systems.Game.UserInputs
 {
     public sealed class ChangeSettingsSystem : IEcsInitSystem
     {

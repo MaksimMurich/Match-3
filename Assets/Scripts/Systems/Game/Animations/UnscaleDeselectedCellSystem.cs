@@ -4,7 +4,7 @@ using Match3.Components.Game;
 using Match3.Configurations;
 using UnityEngine;
 
-namespace Match3.Assets.Scripts.Systems.Game
+namespace Match3.Assets.Scripts.Systems.Game.Animations
 {
     public sealed class UnscaleDeselectedCellSystem : IEcsRunSystem
     {

@@ -1,10 +1,5 @@
 ﻿using Leopotam.Ecs;
 using Match3.Configurations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Match3.Assets.Scripts.Systems.Game.Initialization
