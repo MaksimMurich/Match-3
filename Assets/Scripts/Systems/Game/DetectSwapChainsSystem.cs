@@ -9,7 +9,7 @@ namespace Match3.Systems.Game
 {
     public sealed class DetectSwapChainsSystem : IEcsRunSystem
     {
-        private readonly GameField _gameField = null;
+        private readonly EcsWorld _ecsWorld = null;
         private readonly GameField _gameField = null;
         private readonly Configuration _configuration = null;
         private readonly EcsFilter<Cell, Vector2Int, SwapCompleateEvent> _filter = null;
@@ -68,13 +68,14 @@ namespace Match3.Systems.Game
 
         private void MarkChane(Vector2Int startPosition, Vector2Int direction, int chainSize)
         {
-            for (int i = 0; i < chainSize; i++)
-            {
-                Vector2Int cellPosition = startPosition + direction * i;
-                _gameField.Cells[cellPosition].Set<ChainLink>().ChainSize = chainSize;
-                _gameField.Cells[cellPosition].Set<ExplosionEvent>();
-                _gameField.Cells[cellPosition].Set<FieldInputLocker>();
-            }
+            var chainEntity = _ecsWorld.NewEntity();
+            chainEntity.Set<ExplosionEvent>();
+            chainEntity.Set<FieldInputLocker>();
+
+            ref Chain chain = ref chainEntity.Set<Chain>();
+            chain.Size = chainSize;
+            chain.Direction = direction;
+            chain.Position = startPosition;
         }
     }
 }

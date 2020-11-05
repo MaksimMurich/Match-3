@@ -55,7 +55,7 @@ namespace Match3
                 .Add(new ScaleSelectedCellSystem())
                 .Add(new UnscaleDeselectedCellSystem())
                 .Add(new AnimateSwapSystem())
-                .Add(new ChainLinksExplosionSystem())
+                .Add(new ChainExplosionSystem())
 
                  // register one-frame components
                 .OneFrame<SwapEvent>()
