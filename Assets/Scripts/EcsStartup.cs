@@ -58,6 +58,7 @@ namespace Match3
                 .Add(new UnscaleDeselectedCellSystem())
                 .Add(new ChainExplosionSystem())
                 .Add(new ChainRewardSystem())
+                .Add(new AnimateRewardSystem())
 
                  // register one-frame components
                 .OneFrame<SelectEvent>()
@@ -66,6 +67,7 @@ namespace Match3
                 .OneFrame<ExplodedEvent>()
                 .OneFrame<EmptyViewEvent>()
                 .OneFrame<UpdateViewPositionEvent>()
+                .OneFrame<RewardedEvent>()
 
                 // inject service instances here (order doesn't important), for example:
                 .Inject(_gameField)

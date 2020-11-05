@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Match3.Assets.Scripts.Systems.Game.Animations
 {
-    public sealed class ChainExplosionSystem: IEcsRunSystem
+    public sealed class ChainExplosionSystem : IEcsRunSystem
     {
         private readonly GameField _gameField = null;
         private readonly Configuration _configuration = null;

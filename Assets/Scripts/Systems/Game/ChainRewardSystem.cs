@@ -1,14 +1,12 @@
 ﻿using Leopotam.Ecs;
 using Match3.Components.Game;
-using Match3.Configurations;
-using System;
+using Match3.Components.Game.Events;
 using UnityEngine;
 
 namespace Match3.Systems.Game
 {
     public sealed class ChainRewardSystem : IEcsRunSystem
     {
-        private readonly Configuration _configuration = null;
         private readonly GameField _gameField = null;
         private readonly PlayerState _playerState = null;
         private readonly EcsFilter<Chain>.Exclude<Rewarded> _filter = null;
@@ -18,6 +16,7 @@ namespace Match3.Systems.Game
             foreach(int index in _filter)
             {
                 _filter.GetEntity(index).Set<Rewarded>();
+                _filter.GetEntity(index).Set<RewardedEvent>();
 
                 int reward = 0;
 
@@ -27,12 +26,9 @@ namespace Match3.Systems.Game
                 {
                     Vector2Int position = chain.Position + i * chain.Direction;
                     reward += GetCellReward(position);
-                    Debug.Log($"reward = {reward}");
                 }
 
                 _playerState.Score += reward;
-                Debug.Log($"score = {_playerState.Score}");
-
             }
         }
 
