@@ -1,4 +1,5 @@
 using Leopotam.Ecs;
+using Match3.Assets.Scripts.Services;
 using Match3.Assets.Scripts.Systems.Game.Animations;
 using Match3.Assets.Scripts.Systems.Game.Initialization;
 using Match3.Components.Game;
@@ -13,7 +14,9 @@ namespace Match3
     {
         [SerializeField] private Configuration _configuration = null;
         [SerializeField] private SceneData _sceneData = null;
+
         private readonly GameField _gameField = new GameField();
+        private readonly ObjectPool _objectPool = new ObjectPool();
 
         private EcsWorld _world;
         private EcsSystems _systems;
