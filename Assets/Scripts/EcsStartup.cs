@@ -2,7 +2,9 @@ using Leopotam.Ecs;
 using Match3.Assets.Scripts.Systems.Game.Animations;
 using Match3.Assets.Scripts.Systems.Game.Initialization;
 using Match3.Components.Game;
+using Match3.Components.Game.Events;
 using Match3.Configurations;
+using Match3.Systems.Game;
 using Match3.Systems.Game.Initialization;
 using Match3.Systems.Game.UserInputs;
 using UnityEngine;
@@ -46,15 +48,22 @@ namespace Match3
                 .Add(new DeselectCellSystem())
                 .Add(new UserSwapSystem())
 
+                // update game field
+                .Add(new DetectSwapChainsSystem())
+
                 // view effects
                 .Add(new ScaleSelectedCellSystem())
                 .Add(new UnscaleDeselectedCellSystem())
                 .Add(new AnimateSwapSystem())
+                .Add(new ChainExplosionSystem())
 
                  // register one-frame components
-                 .OneFrame<SwapEvent>()
-                 .OneFrame<SelectEvent>()
-                 .OneFrame<DeselectEvent>()
+                .OneFrame<SwapEvent>()
+                .OneFrame<SelectEvent>()
+                .OneFrame<DeselectEvent>()
+                .OneFrame<SwapCompleateEvent>()
+                .OneFrame<ExplosionEvent>()
+                .OneFrame<ExplodedEvent>()
 
                 // inject service instances here (order doesn't important), for example:
                 .Inject(_gameField)

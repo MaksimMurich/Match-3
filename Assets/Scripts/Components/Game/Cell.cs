@@ -6,7 +6,6 @@ namespace Match3.Components.Game
     public struct Cell
     {
         public CellView View;
-
         public CellConfiguration Configuration;
     }
 }

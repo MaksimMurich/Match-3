@@ -1,5 +1,6 @@
 ﻿using Leopotam.Ecs;
 using Match3.Components.Game;
+using Match3.Components.Game.Events;
 using Match3.Configurations;
 using UnityEngine;
 
@@ -25,18 +26,18 @@ namespace Match3.Systems.Game.UserInputs
             foreach (int index in _filter)
             {
                 Cell cell = _filter.Get1(index);
-                Vector2 cellPosition = cell.View.CachedTransform.position;
+                Vector2 cellPosition = cell.View.transform.position;
                 Vector2 mouseOffset = mousePosition - cellPosition;
                 EcsEntity cellEntity = _filter.GetEntity(index);
 
                 Vector2Int offset = Vector2Int.zero;
 
-                if (Mathf.Abs(mouseOffset.x) > _configuration.SwapMinOffset)
+                if (Mathf.Abs(mouseOffset.x) > _configuration.SwapMinMouseOffset)
                 {
                     int offsetX = mouseOffset.x > 0 ? 1 : -1;
                     offset = new Vector2Int(offsetX, 0);
                 }
-                else if (Mathf.Abs(mouseOffset.y) > _configuration.SwapMinOffset)
+                else if (Mathf.Abs(mouseOffset.y) > _configuration.SwapMinMouseOffset)
                 {
                     int offsetY = mouseOffset.y > 0 ? 1 : -1;
                     offset = new Vector2Int(0, offsetY);
