@@ -16,6 +16,7 @@ namespace Match3
         [SerializeField] private Configuration _configuration = null;
         [SerializeField] private SceneData _sceneData = null;
         private readonly GameField _gameField = new GameField();
+        private readonly PlayerState _playerState = new PlayerState();
 
         private EcsWorld _world;
         private EcsSystems _systems;
@@ -56,6 +57,7 @@ namespace Match3
                 .Add(new ScaleSelectedCellSystem())
                 .Add(new UnscaleDeselectedCellSystem())
                 .Add(new ChainExplosionSystem())
+                .Add(new ChainRewardSystem())
 
                  // register one-frame components
                 .OneFrame<SelectEvent>()
@@ -69,6 +71,7 @@ namespace Match3
                 .Inject(_gameField)
                 .Inject(_configuration)
                 .Inject(_sceneData)
+                .Inject(_playerState)
                 .Init();
         }
 

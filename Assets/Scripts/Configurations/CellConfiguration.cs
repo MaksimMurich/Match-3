@@ -11,6 +11,7 @@ namespace Match3.Configurations
         [SerializeField] private CellType _type;
         [Tooltip("weight of current cell, when choosing a random cell for spawn")]
         [SerializeField] private float _spawnWeight = 10;
+        [SerializeField] private int _reward = 50;
         [SerializeField] private CellView _view = null;
         [SerializeField] private CellView _combo4VerticalView = null;
         [SerializeField] private CellView _combo4HorizontalView = null;
@@ -21,6 +22,7 @@ namespace Match3.Configurations
 
         public CellType Type => _type;
         public float Weight => _spawnWeight;
+        public int Reward => _reward;
         public CellView ViewExample => _view;
         public CellView Combo4VerticalView => _combo4VerticalView;
         public CellView Combo4HorizontalView => _combo4HorizontalView;
