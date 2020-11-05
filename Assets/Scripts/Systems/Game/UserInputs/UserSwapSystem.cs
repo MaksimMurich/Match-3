@@ -54,12 +54,14 @@ namespace Match3.Systems.Game.UserInputs
                 cellEntity.Unset<Selected>();
                 cellEntity.Set<DeselectEvent>();
                 cellEntity.Set<Vector2Int>() = targetPosition;
+                cellEntity.Set<UpdateViewPositionEvent>();
 
-                cellEntity.Set<SwapEvent>().TargetPosition = targetPosition;
+                //cellEntity.Set<SwapEvent>().TargetPosition = targetPosition;
 
                 EcsEntity secondCell = _gameField.Cells[targetPosition];
-                secondCell.Set<SwapEvent>().TargetPosition = fieldPosition;
+                //secondCell.Set<SwapEvent>().TargetPosition = fieldPosition;
                 secondCell.Set<Vector2Int>() = fieldPosition;
+                secondCell.Set<UpdateViewPositionEvent>();
 
                 _gameField.Cells[targetPosition] = cellEntity;
                 _gameField.Cells[fieldPosition] = secondCell;

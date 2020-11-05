@@ -17,9 +17,13 @@ namespace Match3.Systems.Game.Initialization
             foreach (int index in _cellsFilter)
             {
                 Cell cell = _cellsFilter.Get1(index);
+                EcsEntity entity = _cellsFilter.GetEntity(index);
+                entity.Set<Moving>();
                 Vector2Int position = _cellsFilter.Get2(index);
-                //cell.View.transform.position = new Vector2(position.x, _configuration.LevelHeight);
-                cell.View.transform.DOMove(new Vector3(position.x, position.y), _configuration.Animation.UpdateCellPositionSeconds);
+
+                cell.View.transform
+                    .DOMove(new Vector3(position.x, position.y), _configuration.Animation.UpdateCellPositionSeconds)
+                    .OnComplete(() => entity.Unset<Moving>());
             }
         }
     }

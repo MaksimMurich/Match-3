@@ -47,7 +47,7 @@ namespace Match3
                 .Add(new UserSwapSystem())
 
                 // update game field
-                .Add(new DetectSwapChainsSystem())
+                .Add(new DetectChainsSystem())
                 .Add(new FillFieldSystem())
                 .Add(new CreateCellsViewSystem())
                 .Add(new UpdateCellViewPositionSystem())
@@ -55,14 +55,11 @@ namespace Match3
                 // view effects
                 .Add(new ScaleSelectedCellSystem())
                 .Add(new UnscaleDeselectedCellSystem())
-                .Add(new AnimateSwapSystem())
                 .Add(new ChainExplosionSystem())
 
                  // register one-frame components
-                .OneFrame<SwapEvent>()
                 .OneFrame<SelectEvent>()
                 .OneFrame<DeselectEvent>()
-                .OneFrame<SwapCompleateEvent>()
                 .OneFrame<ExplosionEvent>()
                 .OneFrame<ExplodedEvent>()
                 .OneFrame<EmptyViewEvent>()
