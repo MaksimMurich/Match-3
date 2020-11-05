@@ -4,6 +4,6 @@ namespace Match3.Components.Game
 {
     public struct SwapEvent
     {
-        public Vector2Int Offset;
+        public Vector2Int TargetPosition;
     }
 }

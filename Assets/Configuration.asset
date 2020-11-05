@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelWidth: 5
   LevelHeight: 5
+  _swapMinOffset: 0.5
   _combo4RewardMultiplayer: 2
   _combo5RewardMultiplayer: 4
   _animationsConfiguration:
     _setectedCellScaleSeconds: 0.3
     _setectedCellScale: 1.6
     _upCellOnAnimate: {x: 0, y: 0, z: -0.1}
+    _swapDuration: 0.4
   _cellConfigurations:
   - _spawnWeight: 200
     _view: {fileID: 1460295296006681145, guid: ecae1684d2773c041b5e44983b0a2f17, type: 3}

@@ -11,9 +11,15 @@ namespace Match3.Systems.Game.UserInputs
         private readonly Configuration _configuration = null;
         private readonly GameField _gameField = null;
         private readonly EcsFilter<Cell, Vector2Int, Selected> _filter = null;
+        private readonly EcsFilter<FieldInputLocker> _lockFilter = null;
 
         public void Run()
         {
+            if(_lockFilter.GetEntitiesCount() > 0)
+            {
+                return;
+            }
+
             Vector2 mousePosition = _sceneData.Camera.ScreenToWorldPoint(Input.mousePosition);
 
             foreach (int index in _filter)
@@ -37,21 +43,24 @@ namespace Match3.Systems.Game.UserInputs
                 }
 
                 Vector2Int fieldPosition = _filter.Get2(index);
+                Vector2Int targetPosition = fieldPosition + offset;
 
-                if (offset.Equals(Vector2Int.zero) || !_gameField.Cells.ContainsKey(fieldPosition + offset))
+                if (offset.Equals(Vector2Int.zero) || !_gameField.Cells.ContainsKey(targetPosition))
                 {
                     continue;
                 }
 
                 cellEntity.Unset<Selected>();
                 cellEntity.Set<DeselectEvent>();
+                cellEntity.Set<Vector2Int>() = targetPosition;
 
-                cellEntity.Set<SwapEvent>().Offset = offset;
+                cellEntity.Set<SwapEvent>().TargetPosition = targetPosition;
 
-                EcsEntity secondCell = _gameField.Cells[fieldPosition + offset];
-                secondCell.Set<SwapEvent>().Offset = fieldPosition - offset;
+                EcsEntity secondCell = _gameField.Cells[targetPosition];
+                secondCell.Set<SwapEvent>().TargetPosition = fieldPosition;
+                secondCell.Set<Vector2Int>() = fieldPosition;
 
-                _gameField.Cells[fieldPosition + offset] = cellEntity;
+                _gameField.Cells[targetPosition] = cellEntity;
                 _gameField.Cells[fieldPosition] = secondCell;
             }
         }

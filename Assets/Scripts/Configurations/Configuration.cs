@@ -17,7 +17,7 @@ namespace Match3.Configurations
         public float SwapMinOffset => _swapMinOffset;
         public float Combo4Configuration => _combo4RewardMultiplayer;
         public float Combo5Configuration => _combo5RewardMultiplayer;
-        public AnimationsConfiguration AnimationsConfiguration => _animationsConfiguration;
+        public AnimationsConfiguration Animation => _animationsConfiguration;
         public CellConfiguration[] CellConfigurations => _cellConfigurations;
     }
 }

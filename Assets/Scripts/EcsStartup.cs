@@ -1,5 +1,4 @@
 using Leopotam.Ecs;
-using Match3.Assets.Scripts.Systems.Game;
 using Match3.Assets.Scripts.Systems.Game.Animations;
 using Match3.Assets.Scripts.Systems.Game.Initialization;
 using Match3.Components.Game;
@@ -50,8 +49,7 @@ namespace Match3
                 // view effects
                 .Add(new ScaleSelectedCellSystem())
                 .Add(new UnscaleDeselectedCellSystem())
-
-                .Add(new SwapSystem())
+                .Add(new AnimateSwapSystem())
 
                  // register one-frame components
                  .OneFrame<SwapEvent>()
