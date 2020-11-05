@@ -3,6 +3,7 @@ using Leopotam.Ecs;
 using Match3.Components.Game;
 using Match3.Configurations;
 using Match3.UnityComponents;
+using System;
 using UnityEngine;
 
 namespace Match3.Assets.Scripts.Systems.Game.Animations
@@ -14,7 +15,7 @@ namespace Match3.Assets.Scripts.Systems.Game.Animations
 
         public void Run()
         {
-            foreach(int index in _filter)
+            foreach (int index in _filter)
             {
                 Vector2Int target = _filter.Get3(index).TargetPosition;
                 Vector3 targetPosition = new Vector3(target.x, target.y, 0);
@@ -22,7 +23,7 @@ namespace Match3.Assets.Scripts.Systems.Game.Animations
 
                 EcsEntity entity = _filter.GetEntity(index);
                 entity.Set<FieldInputLocker>();
-                cell.CachedTransform.DOMove(targetPosition, _configuration.Animation.SwapDuration)
+                cell.transform.DOMove(targetPosition, _configuration.Animation.SwapDuration)
                     .OnComplete(() => OnSwapCompleate(ref entity));
                 entity.Unset<SwapEvent>();
             }

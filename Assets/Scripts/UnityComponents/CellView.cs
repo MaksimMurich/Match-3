@@ -7,11 +7,11 @@ namespace Match3.UnityComponents
     public class CellView : MonoBehaviour
     {
         public EcsEntity Entity;
-        public Transform CachedTransform { get; private set; }
+        public new Transform transform { get; private set; }
 
         private void Awake()
         {
-            CachedTransform = transform;
+            transform = base.transform;
         }
     }
 }

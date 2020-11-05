@@ -47,19 +47,22 @@ namespace Match3
                 .Add(new DeselectCellSystem())
                 .Add(new UserSwapSystem())
 
+                // update game field
+                .Add(new DetectSwapChainsSystem())
+
                 // view effects
                 .Add(new ScaleSelectedCellSystem())
                 .Add(new UnscaleDeselectedCellSystem())
                 .Add(new AnimateSwapSystem())
-
-                // update game field
-                .Add(new DetectSwapChainsSystem())
+                .Add(new ChainLinksExplosionSystem())
 
                  // register one-frame components
-                 .OneFrame<SwapEvent>()
-                 .OneFrame<SelectEvent>()
-                 .OneFrame<DeselectEvent>()
-                 .OneFrame<SwapCompleateEvent>()
+                .OneFrame<SwapEvent>()
+                .OneFrame<SelectEvent>()
+                .OneFrame<DeselectEvent>()
+                .OneFrame<SwapCompleateEvent>()
+                .OneFrame<ExplosionEvent>()
+                .OneFrame<ExplodedEvent>()
 
                 // inject service instances here (order doesn't important), for example:
                 .Inject(_gameField)

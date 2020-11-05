@@ -25,7 +25,7 @@ namespace Match3.Systems.Game.UserInputs
             foreach (int index in _filter)
             {
                 Cell cell = _filter.Get1(index);
-                Vector2 cellPosition = cell.View.CachedTransform.position;
+                Vector2 cellPosition = cell.View.transform.position;
                 Vector2 mouseOffset = mousePosition - cellPosition;
                 EcsEntity cellEntity = _filter.GetEntity(index);
 

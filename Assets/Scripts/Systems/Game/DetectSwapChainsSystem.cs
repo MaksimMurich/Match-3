@@ -70,6 +70,7 @@ namespace Match3.Systems.Game
             {
                 Vector2Int cellPosition = startPosition + direction * i;
                 _gameField.Cells[cellPosition].Set<ChainLink>().ChainSize = chainSize;
+                _gameField.Cells[cellPosition].Set<ExplosionEvent>();
                 _gameField.Cells[cellPosition].Set<FieldInputLocker>();
             }
         }
