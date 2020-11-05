@@ -1,4 +1,5 @@
-﻿using Match3.UnityComponents;
+﻿using Match3.Components.Game;
+using Match3.UnityComponents;
 using System;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Match3.Configurations
     [Serializable]
     public class CellConfiguration
     {
+        [SerializeField] private CellType _type;
         [Tooltip("weight of current cell, when choosing a random cell for spawn")]
         [SerializeField] private float _spawnWeight = 10;
         [SerializeField] private CellView _view = null;
@@ -17,6 +19,7 @@ namespace Match3.Configurations
         private float _spawnRangeMin = -1;
         private float _spawnRangeMax = -1;
 
+        public CellType Type => _type;
         public float Weight => _spawnWeight;
         public CellView ViewExample => _view;
         public CellView Combo4VerticalView => _combo4VerticalView;

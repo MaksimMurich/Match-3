@@ -31,12 +31,12 @@ namespace Match3.Systems.Game.UserInputs
 
                 Vector2Int offset = Vector2Int.zero;
 
-                if (Mathf.Abs(mouseOffset.x) > _configuration.SwapMinOffset)
+                if (Mathf.Abs(mouseOffset.x) > _configuration.SwapMinMouseOffset)
                 {
                     int offsetX = mouseOffset.x > 0 ? 1 : -1;
                     offset = new Vector2Int(offsetX, 0);
                 }
-                else if (Mathf.Abs(mouseOffset.y) > _configuration.SwapMinOffset)
+                else if (Mathf.Abs(mouseOffset.y) > _configuration.SwapMinMouseOffset)
                 {
                     int offsetY = mouseOffset.y > 0 ? 1 : -1;
                     offset = new Vector2Int(0, offsetY);
