@@ -1,5 +1,6 @@
 using Leopotam.Ecs;
 using Match3.Components.Game;
+using Match3.Components.Game.Events;
 using Match3.Configurations;
 using System.Linq;
 using UnityEngine;
@@ -21,6 +22,7 @@ namespace Match3.Systems.Game.Initialization
                     EcsEntity cellEntity = _world.NewEntity();
                     Vector2Int position = new Vector2Int(column, row);
                     cellEntity.Set<Vector2Int>() = position;
+                    cellEntity.Set<EmptyViewEvent>();
 
                     float random = Random.Range(0f, 100f);
                     CellConfiguration cellConfiguration = _configuration.CellConfigurations.Where(c => c.CheckInSpawnRabge(random)).First();

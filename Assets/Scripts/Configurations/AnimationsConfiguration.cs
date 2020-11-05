@@ -11,6 +11,7 @@ namespace Match3.Configurations
         [SerializeField] private float _swapDuration = .4f;
         [SerializeField] private float _explosionScale = 0.05f;
         [SerializeField] private float _explosionSeconds = .5f;
+        [SerializeField] private float _updateCellPositionSeconds = .5f;
         [SerializeField] private Vector3 _upCellOnAnimate = new Vector3(0, 0, -.1f);
 
         public float SetectedCellScaleSeconds => _setectedCellScaleSeconds;
@@ -18,6 +19,8 @@ namespace Match3.Configurations
         public float SwapDuration => _swapDuration;
         public float ExplosionScale => _explosionScale;
         public float ExplosionSeconds => _explosionSeconds;
+        public float UpdateCellPositionSeconds => _updateCellPositionSeconds;
         public Vector3 UpCellOnAnimate => _upCellOnAnimate;
+
     }
 }

@@ -36,8 +36,6 @@ namespace Match3
                 // initialization
                 .Add(new SetCellConfigSpawnRangesSystem())
                 .Add(new InitializeFieldSystem())
-                .Add(new CreateCellsViewSystem())
-                .Add(new SetCellViewPositionSystem())
                 .Add(new ConfigurateCameraSystem())
 
                 // user input event handlers
@@ -50,6 +48,9 @@ namespace Match3
 
                 // update game field
                 .Add(new DetectSwapChainsSystem())
+                .Add(new FillFieldSystem())
+                .Add(new CreateCellsViewSystem())
+                .Add(new UpdateCellViewPositionSystem())
 
                 // view effects
                 .Add(new ScaleSelectedCellSystem())
@@ -64,6 +65,8 @@ namespace Match3
                 .OneFrame<SwapCompleateEvent>()
                 .OneFrame<ExplosionEvent>()
                 .OneFrame<ExplodedEvent>()
+                .OneFrame<EmptyViewEvent>()
+                .OneFrame<UpdateViewPositionEvent>()
 
                 // inject service instances here (order doesn't important), for example:
                 .Inject(_gameField)

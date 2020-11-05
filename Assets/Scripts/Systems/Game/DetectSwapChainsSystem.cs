@@ -16,7 +16,7 @@ namespace Match3.Systems.Game
 
         public void Run()
         {
-            foreach(int index in _filter)
+            foreach (int index in _filter)
             {
                 UpdateField(_filter.Get1(index).Configuration.Type, _filter.Get2(index));
             }
@@ -70,7 +70,6 @@ namespace Match3.Systems.Game
         {
             var chainEntity = _ecsWorld.NewEntity();
             chainEntity.Set<ExplosionEvent>();
-            chainEntity.Set<FieldInputLocker>();
 
             ref Chain chain = ref chainEntity.Set<Chain>();
             chain.Size = chainSize;
