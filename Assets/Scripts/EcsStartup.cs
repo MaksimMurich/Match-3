@@ -1,8 +1,10 @@
 using Leopotam.Ecs;
+using Match3.Assets.Scripts.Systems.Game.Animations;
 using Match3.Assets.Scripts.Systems.Game.Initialization;
+using Match3.Components.Game;
 using Match3.Configurations;
-using Match3.Systems.Game;
 using Match3.Systems.Game.Initialization;
+using Match3.Systems.Game.UserInputs;
 using UnityEngine;
 
 namespace Match3
@@ -40,10 +42,19 @@ namespace Match3
                 .Add(new OpenSettingsSystem())
                 .Add(new ChangeSettingsSystem())
                 .Add(new RestartSystem())
+                .Add(new SelectCellSystem())
+                .Add(new DeselectCellSystem())
+                .Add(new UserSwapSystem())
 
-                // register one-frame components (order is important), for example:
-                // .OneFrame<TestComponent1> ()
-                // .OneFrame<TestComponent2> ()
+                // view effects
+                .Add(new ScaleSelectedCellSystem())
+                .Add(new UnscaleDeselectedCellSystem())
+                .Add(new AnimateSwapSystem())
+
+                 // register one-frame components
+                 .OneFrame<SwapEvent>()
+                 .OneFrame<SelectEvent>()
+                 .OneFrame<DeselectEvent>()
 
                 // inject service instances here (order doesn't important), for example:
                 .Inject(_gameField)
