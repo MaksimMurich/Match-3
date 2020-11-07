@@ -43,6 +43,9 @@ namespace Match3
                 .Add(new OpenSettingsSystem())
                 .Add(new ChangeSettingsSystem())
                 .Add(new RestartSystem())
+                .Add(new CancelSettingsSystem())
+                .Add(new CloseAppSystem())
+
                 .Add(new SelectCellSystem())
                 .Add(new DeselectCellSystem())
                 .Add(new UserSwapSystem())
