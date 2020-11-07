@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\Components\Game\Moving.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Rewarded.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Selected.cs" />
+    <Compile Include="Assets\Scripts\Components\Game\SwapBack.cs" />
     <Compile Include="Assets\Scripts\Configurations\AnimationsConfiguration.cs" />
     <Compile Include="Assets\Scripts\Configurations\CellConfiguration.cs" />
     <Compile Include="Assets\Scripts\Configurations\Configuration.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Assets\Scripts\GameField.cs" />
     <Compile Include="Assets\Scripts\PlayerState.cs" />
     <Compile Include="Assets\Scripts\SceneData.cs" />
+    <Compile Include="Assets\Scripts\Services\GameFieldAnalyst.cs" />
     <Compile Include="Assets\Scripts\Services\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Animations\AnimateRewardSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Animations\ChainExplosionSystem.cs" />
