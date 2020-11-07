@@ -2,7 +2,6 @@
 using Match3.Components.Game;
 using Match3.Components.Game.Events;
 using Match3.Configurations;
-using System;
 using UnityEngine;
 
 namespace Match3.Systems.Game
@@ -19,11 +18,11 @@ namespace Match3.Systems.Game
 
         public void Run()
         {
-            if(_movingFilter.GetEntitiesCount() > 0)
+            if (_movingFilter.GetEntitiesCount() > 0)
             {
                 _movingDetected = true;
             }
-            else if(_movingDetected)
+            else if (_movingDetected)
             {
                 DetectChains();
                 _movingDetected = false;

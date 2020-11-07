@@ -13,7 +13,7 @@ namespace Match3.Systems.Game
 
         public void Run()
         {
-            foreach(int index in _filter)
+            foreach (int index in _filter)
             {
                 _filter.GetEntity(index).Set<Rewarded>();
                 _filter.GetEntity(index).Set<RewardedEvent>();

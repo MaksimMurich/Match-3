@@ -9,7 +9,7 @@ namespace Match3.Assets.Scripts.UnityComponents.UI
 
         public void SetScore(int value)
         {
-            _score.text ="счет: " + value.ToString();
+            _score.text = "счет: " + value.ToString();
         }
     }
 }
