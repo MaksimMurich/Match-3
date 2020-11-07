@@ -1,4 +1,5 @@
 ﻿using Leopotam.Ecs;
+using Match3.Assets.Scripts.Services;
 using Match3.Components.Game;
 using Match3.Components.Game.Events;
 using Match3.Configurations;
@@ -56,15 +57,22 @@ namespace Match3.Systems.Game.UserInputs
                 cellEntity.Set<Vector2Int>() = targetPosition;
                 cellEntity.Set<UpdateViewPositionEvent>();
 
-                //cellEntity.Set<SwapEvent>().TargetPosition = targetPosition;
-
                 EcsEntity secondCell = _gameField.Cells[targetPosition];
-                //secondCell.Set<SwapEvent>().TargetPosition = fieldPosition;
                 secondCell.Set<Vector2Int>() = fieldPosition;
                 secondCell.Set<UpdateViewPositionEvent>();
 
-                _gameField.Cells[targetPosition] = cellEntity;
                 _gameField.Cells[fieldPosition] = secondCell;
+                _gameField.Cells[targetPosition] = cellEntity;
+
+                bool hasChain = GameFieldAnalyst.HasChain(_gameField.Cells, _configuration);
+
+                if (!hasChain)
+                {
+                    _gameField.Cells[fieldPosition] = cellEntity;
+                    _gameField.Cells[targetPosition] = secondCell;
+                    _gameField.Cells[fieldPosition].Set<MoveBack>().Position = fieldPosition;
+                    _gameField.Cells[targetPosition].Set<MoveBack>().Position = targetPosition;
+                }
             }
         }
     }

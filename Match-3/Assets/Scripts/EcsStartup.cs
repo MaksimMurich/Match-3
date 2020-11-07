@@ -4,6 +4,7 @@ using Match3.Assets.Scripts.Systems.Game.Initialization;
 using Match3.Components.Game.Events;
 using Match3.Configurations;
 using Match3.Systems.Game;
+using Match3.Systems.Game.Animations;
 using Match3.Systems.Game.Initialization;
 using Match3.Systems.Game.UserInputs;
 using UnityEngine;
@@ -54,7 +55,8 @@ namespace Match3
                 .Add(new DetectChainsSystem())
                 .Add(new FillFieldSystem())
                 .Add(new CreateCellsViewSystem())
-                .Add(new UpdateCellViewPositionSystem())
+                .Add(new AnimateCellViewPositionSystem())
+                .Add(new AnimateEmptySwapSystem())
 
                 // view effects
                 .Add(new ScaleSelectedCellSystem())
