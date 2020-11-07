@@ -8,7 +8,7 @@ namespace Match3.Assets.Scripts.Services
     {
         private Dictionary<Type, Dictionary<MonoBehaviour, Queue<MonoBehaviour>>> _pool = new Dictionary<Type, Dictionary<MonoBehaviour, Queue<MonoBehaviour>>>();
 
-        public T Get<T>(T original) where T: MonoBehaviour
+        public T Get<T>(T original) where T : MonoBehaviour
         {
             T result = null;
             Type type = original.GetType();

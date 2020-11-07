@@ -16,7 +16,7 @@ namespace Match3.Systems.Game.UserInputs
 
         public void Run()
         {
-            if(_lockFilter.GetEntitiesCount() > 0)
+            if (_lockFilter.GetEntitiesCount() > 0)
             {
                 return;
             }

@@ -3,7 +3,6 @@ using Leopotam.Ecs;
 using Match3.Components.Game;
 using Match3.Components.Game.Events;
 using Match3.Configurations;
-using System;
 using UnityEngine;
 
 namespace Match3.Assets.Scripts.Systems.Game.Animations

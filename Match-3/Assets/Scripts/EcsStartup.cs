@@ -1,7 +1,6 @@
 using Leopotam.Ecs;
 using Match3.Assets.Scripts.Systems.Game.Animations;
 using Match3.Assets.Scripts.Systems.Game.Initialization;
-using Match3.Components.Game;
 using Match3.Components.Game.Events;
 using Match3.Configurations;
 using Match3.Systems.Game;
@@ -15,11 +14,12 @@ namespace Match3
     {
         [SerializeField] private Configuration _configuration = null;
         [SerializeField] private SceneData _sceneData = null;
-        private readonly GameField _gameField = new GameField();
-        private readonly PlayerState _playerState = new PlayerState();
 
         private EcsWorld _world;
         private EcsSystems _systems;
+
+        private readonly GameField _gameField = new GameField();
+        private readonly PlayerState _playerState = new PlayerState();
 
         void Start()
         {
@@ -60,7 +60,7 @@ namespace Match3
                 .Add(new ChainRewardSystem())
                 .Add(new AnimateRewardSystem())
 
-                 // register one-frame components
+                // register one-frame components
                 .OneFrame<SelectEvent>()
                 .OneFrame<DeselectEvent>()
                 .OneFrame<ExplosionEvent>()

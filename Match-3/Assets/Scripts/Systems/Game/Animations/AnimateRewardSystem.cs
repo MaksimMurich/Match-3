@@ -11,7 +11,7 @@ namespace Match3.Assets.Scripts.Systems.Game.Animations
 
         public void Run()
         {
-            if(_filter.GetEntitiesCount() > 0)
+            if (_filter.GetEntitiesCount() > 0)
             {
                 _sceneData.ScoreView.SetScore(_playerState.Score);
             }

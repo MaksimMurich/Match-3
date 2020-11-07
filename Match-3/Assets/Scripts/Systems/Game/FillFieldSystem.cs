@@ -2,8 +2,6 @@
 using Match3.Components.Game;
 using Match3.Components.Game.Events;
 using Match3.Configurations;
-using System;
-using System.Data.SqlTypes;
 using System.Linq;
 using UnityEngine;
 
@@ -37,7 +35,7 @@ namespace Match3.Systems.Game
         {
             bool destroyed = false;
 
-            foreach(int index in _chainFilter)
+            foreach (int index in _chainFilter)
             {
                 Chain chain = _chainFilter.Get1(index);
 
@@ -85,7 +83,7 @@ namespace Match3.Systems.Game
 
                     while (bottomCellIsEmpty && _gameField.Cells.ContainsKey(new Vector2Int(column, currentTargetRow - 1)))
                     {
-                        bottomCellIsEmpty = CheckCellIsEmpty(column, currentTargetRow -1);
+                        bottomCellIsEmpty = CheckCellIsEmpty(column, currentTargetRow - 1);
 
                         if (!bottomCellIsEmpty)
                         {
@@ -116,11 +114,11 @@ namespace Match3.Systems.Game
 
         private void FillEmptySpaces()
         {
-            for (int column = 0; column < _configuration.LevelWidth ; column++)
+            for (int column = 0; column < _configuration.LevelWidth; column++)
             {
                 for (int row = 0; row < _configuration.LevelHeight; row++)
                 {
-                    if(CheckCellIsEmpty(column, row))
+                    if (CheckCellIsEmpty(column, row))
                     {
                         GenerateCell(column, row);
                     }
