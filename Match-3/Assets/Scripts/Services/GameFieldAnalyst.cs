@@ -1,7 +1,6 @@
 ﻿using Leopotam.Ecs;
 using Match3.Components.Game;
 using Match3.Configurations;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,9 +8,11 @@ namespace Match3.Assets.Scripts.Services
 {
     public static class GameFieldAnalyst
     {
-        internal static bool HasChain(Dictionary<Vector2Int, EcsEntity> cells, int minRewardableChain)
+        internal static bool HasChain(Dictionary<Vector2Int, EcsEntity> cells, Configuration _configuration)
         {
-            throw new NotImplementedException();
+            List<Chain> chains = GetChains(cells, _configuration);
+
+            return chains.Count > 0;
         }
 
         public static List<Chain> GetChains(Dictionary<Vector2Int, EcsEntity> cells, Configuration _configuration)
