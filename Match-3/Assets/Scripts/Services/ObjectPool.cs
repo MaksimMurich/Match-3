@@ -45,7 +45,11 @@ namespace Match3.Assets.Scripts.Services
                 _pool[type].Add(original, new Queue<MonoBehaviour>());
             }
 
-            _pool[type][original].Enqueue(value);
+            if (!_pool[type][original].Contains(value))
+            {
+                _pool[type][original].Enqueue(value);
+            }
+
             value.transform.parent = _stashedObjectsContainer;
         }
 
@@ -67,6 +71,7 @@ namespace Match3.Assets.Scripts.Services
 
             result.transform.parent = _activeObjectsContainer;
             result.transform.localScale = result.GetOriginal().transform.localScale;
+            result.Reset();
 
             return result;
         }

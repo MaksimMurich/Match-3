@@ -10,13 +10,6 @@ namespace Match3.UnityComponents
         public EcsEntity Entity;
         private CellView Original;
 
-        public new Transform transform { get; private set; }
-
-        private void Awake()
-        {
-            transform = base.transform;
-        }
-
         CellView IClone<CellView>.GetOriginal()
         {
             return Original;
