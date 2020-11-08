@@ -1,4 +1,5 @@
 using Leopotam.Ecs;
+using Match3.Assets.Scripts.Services;
 using Match3.Assets.Scripts.Systems.Game.Animations;
 using Match3.Assets.Scripts.Systems.Game.Initialization;
 using Match3.Components.Game.Events;
@@ -18,6 +19,7 @@ namespace Match3
 
         private EcsWorld _world;
         private EcsSystems _systems;
+        private ObjectPool _objectPool;
 
         private readonly GameField _gameField = new GameField();
         private readonly PlayerState _playerState = new PlayerState();
@@ -26,6 +28,7 @@ namespace Match3
         {
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
+            _objectPool = new ObjectPool();
 
 #if UNITY_EDITOR
             Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create(_world);
@@ -79,6 +82,7 @@ namespace Match3
                 .Inject(_configuration)
                 .Inject(_sceneData)
                 .Inject(_playerState)
+                .Inject(_objectPool)
                 .Init();
         }
 

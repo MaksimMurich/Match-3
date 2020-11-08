@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\PlayerState.cs" />
     <Compile Include="Assets\Scripts\SceneData.cs" />
     <Compile Include="Assets\Scripts\Services\GameFieldAnalyst.cs" />
+    <Compile Include="Assets\Scripts\Services\IClone.cs" />
     <Compile Include="Assets\Scripts\Services\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Animations\AnimateCellViewPositionSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Animations\AnimateEmptySwapSystem.cs" />
@@ -102,10 +103,10 @@
     <Compile Include="Assets\Scripts\Systems\Game\Animations\ScaleSelectedCellSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Animations\UnscaleDeselectedCellSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\ChainRewardSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\CreateCellsViewSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\DetectChainsSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\FillFieldSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\ConfigurateCameraSystem.cs" />
-    <Compile Include="Assets\Scripts\Systems\Game\Initialization\CreateCellsViewSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\InitializeFieldSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\SetCellConfigSpawnRangesSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\UserInputs\CancelSettingsSystem.cs" />
