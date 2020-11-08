@@ -77,7 +77,7 @@
     <Compile Include="Assets\Scripts\Components\Game\Events\EmptyViewEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\ExplodedEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\ExplosionEvent.cs" />
-    <Compile Include="Assets\Scripts\Components\Game\Events\RewardedEvent.cs" />
+    <Compile Include="Assets\Scripts\Components\Game\Events\RewardEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\SelectEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\UpdateViewPositionEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\FieldInputLocker.cs" />

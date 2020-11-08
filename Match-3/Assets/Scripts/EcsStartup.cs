@@ -75,7 +75,7 @@ namespace Match3
                 .OneFrame<ExplodedEvent>()
                 .OneFrame<EmptyViewEvent>()
                 .OneFrame<UpdateViewPositionEvent>()
-                .OneFrame<RewardedEvent>()
+                .OneFrame<RewardEvent>()
 
                 // inject service instances here (order doesn't important), for example:
                 .Inject(_gameField)

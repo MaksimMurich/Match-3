@@ -16,7 +16,7 @@ namespace Match3.Systems.Game
             foreach (int index in _filter)
             {
                 _filter.GetEntity(index).Set<Rewarded>();
-                _filter.GetEntity(index).Set<RewardedEvent>();
+                _filter.GetEntity(index).Set<RewardEvent>();
 
                 int reward = 0;
 
