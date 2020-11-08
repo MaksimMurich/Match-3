@@ -20,7 +20,6 @@ namespace Match3.Systems.Game
             {
                 ref Cell cell = ref _filter.Get1(index);
                 CellView view = _objectPool.Get(cell.Configuration.ViewExample);
-                //CellView view = GameObject.Instantiate(cell.Configuration.ViewExample);
                 view.Entity = _filter.GetEntity(index);
 
                 cell.View = view;

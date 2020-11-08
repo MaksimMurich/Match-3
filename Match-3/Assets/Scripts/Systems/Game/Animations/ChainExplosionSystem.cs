@@ -43,8 +43,6 @@ namespace Match3.Assets.Scripts.Systems.Game.Animations
                     });
                 }
             }
-
-            Debug.Log($"explodeCells {explodeCellsCount} objects");
         }
 
         private void Hide(CellView cell, EcsEntity chain, bool animationCompleate)
