@@ -6,7 +6,7 @@ using Match3.Configurations;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Match3.Systems.Game
+namespace Match3.Systems.Game.UpdateFieldData
 {
     public sealed class DetectChainsSystem : IEcsRunSystem
     {

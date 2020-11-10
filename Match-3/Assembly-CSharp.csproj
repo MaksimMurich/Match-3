@@ -102,13 +102,13 @@
     <Compile Include="Assets\Scripts\Systems\Game\Animations\ChainExplosionSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Animations\ScaleSelectedCellSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Animations\UnscaleDeselectedCellSystem.cs" />
-    <Compile Include="Assets\Scripts\Systems\Game\ChainRewardSystem.cs" />
-    <Compile Include="Assets\Scripts\Systems\Game\CreateCellsViewSystem.cs" />
-    <Compile Include="Assets\Scripts\Systems\Game\DetectChainsSystem.cs" />
-    <Compile Include="Assets\Scripts\Systems\Game\FillFieldSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\ConfigurateCameraSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\InitializeFieldSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\SetCellConfigSpawnRangesSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\UpdateFieldData\ChainRewardSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\UpdateFieldData\CreateCellsViewSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\UpdateFieldData\DetectChainsSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\UpdateFieldData\FillFieldSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\UserInputs\CancelSettingsSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\UserInputs\ChangeSettingsSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\UserInputs\CloseAppSystem.cs" />

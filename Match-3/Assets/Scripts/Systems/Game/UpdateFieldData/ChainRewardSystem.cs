@@ -3,7 +3,7 @@ using Match3.Components.Game;
 using Match3.Components.Game.Events;
 using UnityEngine;
 
-namespace Match3.Systems.Game
+namespace Match3.Systems.Game.UpdateFieldData
 {
     public sealed class ChainRewardSystem : IEcsRunSystem
     {

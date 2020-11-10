@@ -5,7 +5,7 @@ using Match3.Configurations;
 using System.Linq;
 using UnityEngine;
 
-namespace Match3.Systems.Game
+namespace Match3.Systems.Game.UpdateFieldData
 {
     public sealed class FillFieldSystem : IEcsRunSystem
     {

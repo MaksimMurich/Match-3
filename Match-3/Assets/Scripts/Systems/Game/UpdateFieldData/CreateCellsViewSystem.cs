@@ -6,7 +6,7 @@ using Match3.Configurations;
 using Match3.UnityComponents;
 using UnityEngine;
 
-namespace Match3.Systems.Game
+namespace Match3.Systems.Game.UpdateFieldData
 {
     public sealed class CreateCellsViewSystem : IEcsRunSystem
     {
