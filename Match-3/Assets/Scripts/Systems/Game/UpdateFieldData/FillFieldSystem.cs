@@ -13,7 +13,7 @@ namespace Match3.Systems.Game.UpdateFieldData
         private readonly GameField _gameField = null;
         private readonly Configuration _configuration = null;
         private readonly EcsFilter<ExplodedEvent> _explodedEventFilter = null;
-        private readonly EcsFilter<ChainEvent>.Exclude<FilledChain> _chainFilter = null;
+        private readonly EcsFilter<Chain>.Exclude<FilledChain> _chainFilter = null;
 
         public void Run()
         {
@@ -37,7 +37,7 @@ namespace Match3.Systems.Game.UpdateFieldData
 
             foreach (int index in _chainFilter)
             {
-                ChainEvent chain = _chainFilter.Get1(index);
+                Chain chain = _chainFilter.Get1(index);
 
                 for (int i = 0; i < chain.Size; i++)
                 {

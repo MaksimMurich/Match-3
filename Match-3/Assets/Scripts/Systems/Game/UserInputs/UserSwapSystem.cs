@@ -13,15 +13,9 @@ namespace Match3.Systems.Game.UserInputs
         private readonly Configuration _configuration = null;
         private readonly GameField _gameField = null;
         private readonly EcsFilter<Cell, Vector2Int, Selected> _filter = null;
-        private readonly EcsFilter<FieldInputLocker> _lockFilter = null;
 
         public void Run()
-        {
-            if (_lockFilter.GetEntitiesCount() > 0)
-            {
-                return;
-            }
-
+        { 
             Vector2 mousePosition = _sceneData.Camera.ScreenToWorldPoint(Input.mousePosition);
 
             foreach (int index in _filter)

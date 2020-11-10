@@ -14,7 +14,7 @@ namespace Match3.Assets.Scripts.Systems.Game.Animations
         private readonly GameField _gameField = null;
         private readonly Configuration _configuration = null;
         private readonly ObjectPool _objectPool = null;
-        private readonly EcsFilter<ChainEvent, ExplosionEvent>.Exclude<ExplodedEvent> _filter = null;
+        private readonly EcsFilter<Chain, ExplosionEvent>.Exclude<ExplodedEvent> _filter = null;
 
         public void Run()
         {
@@ -24,7 +24,7 @@ namespace Match3.Assets.Scripts.Systems.Game.Animations
             foreach (int index in _filter)
             {
                 EcsEntity entity = _filter.GetEntity(index);
-                ChainEvent chain = _filter.Get1(index);
+                Chain chain = _filter.Get1(index);
                 int lastChainId = chain.Size - 1;
                 bool lastChain = index == _filter.GetEntitiesCount() - 1;
 

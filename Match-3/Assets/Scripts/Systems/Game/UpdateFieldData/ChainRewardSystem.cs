@@ -9,7 +9,7 @@ namespace Match3.Systems.Game.UpdateFieldData
     {
         private readonly GameField _gameField = null;
         private readonly PlayerState _playerState = null;
-        private readonly EcsFilter<ChainEvent>.Exclude<Rewarded> _filter = null;
+        private readonly EcsFilter<Chain>.Exclude<Rewarded> _filter = null;
 
         public void Run()
         {
@@ -20,7 +20,7 @@ namespace Match3.Systems.Game.UpdateFieldData
 
                 int reward = 0;
 
-                ChainEvent chain = _filter.Get1(index);
+                Chain chain = _filter.Get1(index);
 
                 for (int i = 0; i < chain.Size; i++)
                 {
