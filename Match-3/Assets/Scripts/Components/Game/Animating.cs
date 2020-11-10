@@ -1,6 +1,6 @@
 ﻿namespace Match3.Components.Game
 {
-    public struct Moving
+    public struct Animating
     {
 
     }

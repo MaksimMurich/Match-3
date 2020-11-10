@@ -28,7 +28,7 @@ namespace Match3.Systems.Game.Animations
                 Vector2Int moveBackPosition = _filter.Get4(index).Position;
 
                 entity.Unset<MoveBack>();
-                entity.Set<Moving>();
+                entity.Set<Animating>();
 
                 cell.View.transform
                     .DOMove(new Vector3(position.x, position.y), _configuration.Animation.UpdateCellPositionSeconds)
@@ -42,7 +42,7 @@ namespace Match3.Systems.Game.Animations
 
             view.transform
                 .DOMove(new Vector3(position.x, position.y), _configuration.Animation.UpdateCellPositionSeconds)
-                .OnComplete(() => { entity.Unset<Moving>(); });
+                .OnComplete(() => { entity.Unset<Animating>(); });
         }
     }
 }

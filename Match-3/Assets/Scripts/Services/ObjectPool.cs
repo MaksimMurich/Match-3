@@ -70,7 +70,6 @@ namespace Match3.Assets.Scripts.Services
             }
 
             result.transform.parent = _activeObjectsContainer;
-            result.transform.localScale = result.GetOriginal().transform.localScale;
             result.Reset();
 
             return result;

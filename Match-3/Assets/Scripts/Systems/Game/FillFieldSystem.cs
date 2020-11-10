@@ -1,7 +1,9 @@
 ﻿using Leopotam.Ecs;
+using Match3.Assets.Scripts.Components.Game.CellTypes;
 using Match3.Components.Game;
 using Match3.Components.Game.Events;
 using Match3.Configurations;
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -26,8 +28,14 @@ namespace Match3.Systems.Game
 
             if (destroyed)
             {
+                AddBonusCells();
                 FallToEmptySpace();
                 FillEmptySpaces();
+            }
+
+            foreach (int index in _chainFilter)
+            {
+                _chainFilter.GetEntity(index).Set<FilledChain>();
             }
         }
 
@@ -52,11 +60,43 @@ namespace Match3.Systems.Game
                     _gameField.Cells[cellPosition] = EcsEntity.Null;
                     destroyed = true;
                 }
-
-                _chainFilter.GetEntity(index).Set<FilledChain>();
             }
 
             return destroyed;
+        }
+
+        private void AddBonusCells()
+        {
+            foreach (int index in _chainFilter)
+            {
+                Chain chain = _chainFilter.Get1(index);
+
+                if(chain.Size == 4)
+                {
+                    AddFourBonusCell(chain);
+                }
+            }
+        }
+
+        private void AddFourBonusCell(Chain chain)
+        {
+            EcsEntity cellEntity = _ecsWorld.NewEntity();
+            Vector2Int position = chain.Position + chain.Direction * 2;
+            cellEntity.Set<Vector2Int>() = position;
+
+            if (chain.Direction.x == 1)
+            {
+                cellEntity.Set<BonusCellFourInRowHorisontal>();
+            }
+            else
+            {
+                cellEntity.Set<BonusCellFourInRowVertical>();
+            }
+
+            cellEntity.Set<Cell>().Configuration = chain.CellsConfiguration;
+            cellEntity.Set<EmptyViewEvent>();
+
+            _gameField.Cells[position] = cellEntity;
         }
 
         private bool FallToEmptySpace()
@@ -137,7 +177,6 @@ namespace Match3.Systems.Game
             cellEntity.Set<Cell>().Configuration = cellConfiguration;
             cellEntity.Set<EmptyViewEvent>();
 
-            _gameField.Cells[position] = EcsEntity.Null;
             _gameField.Cells[position] = cellEntity;
         }
     }

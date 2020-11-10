@@ -58,15 +58,16 @@ namespace Match3
                 .Add(new DetectChainsSystem())
                 .Add(new FillFieldSystem())
                 .Add(new CreateCellsViewSystem())
-                .Add(new AnimateCellViewPositionSystem())
-                .Add(new AnimateEmptySwapSystem())
 
                 // view effects
+                .Add(new AnimateCellViewPositionSystem())
+                .Add(new AnimateEmptySwapSystem())
                 .Add(new ScaleSelectedCellSystem())
                 .Add(new UnscaleDeselectedCellSystem())
                 .Add(new ChainExplosionSystem())
                 .Add(new ChainRewardSystem())
                 .Add(new AnimateRewardSystem())
+                .Add(new AnimateSpawnBonusEvent())
 
                 // register one-frame components
                 .OneFrame<SelectEvent>()
@@ -76,6 +77,7 @@ namespace Match3
                 .OneFrame<EmptyViewEvent>()
                 .OneFrame<UpdateViewPositionEvent>()
                 .OneFrame<RewardEvent>()
+                .OneFrame<SpawnBonusEvent>()
 
                 // inject service instances here (order doesn't important), for example:
                 .Inject(_gameField)

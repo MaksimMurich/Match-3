@@ -76,7 +76,13 @@ namespace Match3.Assets.Scripts.Services
                 position += direction;
             }
 
-            return new Chain() { Position = startPosition, Direction = direction, Size = chainSize };
+            return new Chain()
+            {
+                Position = startPosition,
+                Direction = direction,
+                Size = chainSize,
+                CellsConfiguration = GetCellConfiguration(startPosition, cells)
+            };
         }
 
         private static bool CheckCellChainedBefore(Vector2Int direction, Vector2Int position, CellType cellType, Dictionary<Vector2Int, EcsEntity> cells)
@@ -97,6 +103,11 @@ namespace Match3.Assets.Scripts.Services
         private static CellType GetCellType(Vector2Int position, Dictionary<Vector2Int, EcsEntity> cells)
         {
             return cells[position].Ref<Cell>().Unref().Configuration.Type;
+        }
+
+        private static CellConfiguration GetCellConfiguration(Vector2Int position, Dictionary<Vector2Int, EcsEntity> cells)
+        {
+            return cells[position].Ref<Cell>().Unref().Configuration;
         }
     }
 }

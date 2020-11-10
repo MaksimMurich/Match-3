@@ -18,9 +18,6 @@ namespace Match3.Assets.Scripts.Systems.Game.Animations
 
         public void Run()
         {
-            int lastItemId = _filter.GetEntitiesCount() - 1;
-            int explodeCellsCount = 0;
-
             foreach (int index in _filter)
             {
                 EcsEntity entity = _filter.GetEntity(index);
@@ -28,31 +25,24 @@ namespace Match3.Assets.Scripts.Systems.Game.Animations
                 int lastChainId = chain.Size - 1;
                 bool lastChain = index == _filter.GetEntitiesCount() - 1;
 
-                explodeCellsCount += chain.Size;
-
                 for (int i = 0; i < chain.Size; i++)
                 {
                     Vector2Int position = chain.Position + i * chain.Direction;
                     CellView view = _gameField.Cells[position].Ref<Cell>().Unref().View;
                     view.transform.position += _configuration.Animation.UpCellOnAnimate;
-                    bool chainAnimationCompleate = lastChain && i == lastChainId;
 
                     var tween = view.transform.DOScale(_configuration.Animation.ExplosionScale, _configuration.Animation.ExplosionSeconds).OnComplete(() =>
                     {
-                        Hide(view, entity, chainAnimationCompleate);
+                        Hide(view, entity);
                     });
                 }
             }
         }
 
-        private void Hide(CellView cell, EcsEntity chain, bool animationCompleate)
+        private void Hide(CellView cell, EcsEntity chain)
         {
             _objectPool.Stash(cell);
-
-            if (animationCompleate)
-            {
-                chain.Set<ExplodedEvent>();
-            }
+            chain.Set<ExplodedEvent>();
         }
     }
 }

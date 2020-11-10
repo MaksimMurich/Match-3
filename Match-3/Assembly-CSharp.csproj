@@ -70,8 +70,12 @@
     <Compile Include="Assets\ExternalAssets\LeoEcs\EcsSystem.cs" />
     <Compile Include="Assets\ExternalAssets\LeoEcs\EcsWorld.cs" />
     <Compile Include="Assets\ExternalAssets\LeoEcs\UnityIntegration\Runtime\EditorHelpers.cs" />
+    <Compile Include="Assets\Scripts\Components\Game\Animating.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Cell.cs" />
     <Compile Include="Assets\Scripts\Components\Game\CellType.cs" />
+    <Compile Include="Assets\Scripts\Components\Game\CellTypes\BonusCellFiveInRow.cs" />
+    <Compile Include="Assets\Scripts\Components\Game\CellTypes\BonusCellFourInRowHorisontal.cs" />
+    <Compile Include="Assets\Scripts\Components\Game\CellTypes\BonusCellFourInRowVertical.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Chain.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\DeselectEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\EmptyViewEvent.cs" />
@@ -79,11 +83,10 @@
     <Compile Include="Assets\Scripts\Components\Game\Events\ExplosionEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\RewardEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\SelectEvent.cs" />
+    <Compile Include="Assets\Scripts\Components\Game\Events\SpawnBonusEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\UpdateViewPositionEvent.cs" />
-    <Compile Include="Assets\Scripts\Components\Game\FieldInputLocker.cs" />
     <Compile Include="Assets\Scripts\Components\Game\FilledChain.cs" />
     <Compile Include="Assets\Scripts\Components\Game\MoveBack.cs" />
-    <Compile Include="Assets\Scripts\Components\Game\Moving.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Rewarded.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Selected.cs" />
     <Compile Include="Assets\Scripts\Configurations\AnimationsConfiguration.cs" />
@@ -99,6 +102,7 @@
     <Compile Include="Assets\Scripts\Systems\Game\Animations\AnimateCellViewPositionSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Animations\AnimateEmptySwapSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Animations\AnimateRewardSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\Animations\AnimateSpawnBonusEvent.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Animations\ChainExplosionSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Animations\ScaleSelectedCellSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Animations\UnscaleDeselectedCellSystem.cs" />

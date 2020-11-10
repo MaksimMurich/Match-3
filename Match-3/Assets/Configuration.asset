@@ -12,38 +12,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7635b8635a126ec4ca72a9e4323c5403, type: 3}
   m_Name: Configuration
   m_EditorClassIdentifier: 
-  LevelWidth: 5
-  LevelHeight: 5
-  _swapMinOffset: 0.5
+  LevelWidth: 8
+  LevelHeight: 8
+  _minRewardableChain: 3
+  _swapMinMouseOffset: 0.5
   _combo4RewardMultiplayer: 2
   _combo5RewardMultiplayer: 4
   _animationsConfiguration:
     _setectedCellScaleSeconds: 0.3
     _setectedCellScale: 1.6
     _swapDuration: 0.4
+    _explosionScale: 0.05
+    _explosionSeconds: 0.5
+    _updateCellPositionSeconds: 0.5
     _upCellOnAnimate: {x: 0, y: 0, z: -0.1}
   _cellConfigurations:
   - _type: 1
     _spawnWeight: 200
+    _reward: 50
     _view: {fileID: 1460295296006681145, guid: ecae1684d2773c041b5e44983b0a2f17, type: 3}
-    _combo4VerticalView: {fileID: 0}
-    _combo4HorizontalView: {fileID: 0}
+    _combo4VerticalView: {fileID: 5970476848133258040, guid: f758173e1d6c30c4290ef2626e896fd8,
+      type: 3}
+    _combo4HorizontalView: {fileID: 4389321460277302692, guid: 0551ab57f0e14b14f90d4426b812ddcf,
+      type: 3}
     _combo5View: {fileID: 0}
   - _type: 2
     _spawnWeight: 150
+    _reward: 50
     _view: {fileID: 3507420653472728697, guid: 678c4ed5747337244a4a05d5580902a5, type: 3}
-    _combo4VerticalView: {fileID: 0}
-    _combo4HorizontalView: {fileID: 0}
+    _combo4VerticalView: {fileID: 5970476848133258040, guid: 22c358e8fbc6b844db8559a12c620dfd,
+      type: 3}
+    _combo4HorizontalView: {fileID: 4389321460277302692, guid: 09cd4423bdb50344abf36f4b63b2dadc,
+      type: 3}
     _combo5View: {fileID: 0}
   - _type: 3
     _spawnWeight: 100
+    _reward: 50
     _view: {fileID: 8306811637373637970, guid: 32f48365842a43c4998507df339e84e0, type: 3}
-    _combo4VerticalView: {fileID: 0}
-    _combo4HorizontalView: {fileID: 0}
+    _combo4VerticalView: {fileID: 5970476848133258040, guid: 2991284bb4e4aa74a9567f956749664b,
+      type: 3}
+    _combo4HorizontalView: {fileID: 4389321460277302692, guid: e6ec379d3e278ca428162dfe809dd199,
+      type: 3}
     _combo5View: {fileID: 0}
   - _type: 4
     _spawnWeight: 50
+    _reward: 50
     _view: {fileID: 6851294913485200774, guid: 9692d86436b13164ea8ea84c3d49a040, type: 3}
-    _combo4VerticalView: {fileID: 0}
-    _combo4HorizontalView: {fileID: 0}
+    _combo4VerticalView: {fileID: 5970476848133258040, guid: 7b333a0d14eb30a4dbdba4f55b087ee0,
+      type: 3}
+    _combo4HorizontalView: {fileID: 4389321460277302692, guid: cbae80848c7396e4f8cd1a6f4e413921,
+      type: 3}
     _combo5View: {fileID: 0}
