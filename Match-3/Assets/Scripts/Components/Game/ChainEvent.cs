@@ -2,7 +2,7 @@
 
 namespace Match3.Components.Game
 {
-    public struct Chain
+    public struct ChainEvent
     {
         public int Size;
         public Vector2Int Position;

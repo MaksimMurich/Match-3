@@ -25,7 +25,7 @@ namespace Match3.Systems.Game.UpdateFieldData
             }
             else if (_fieldChanged)
             {
-                List<Chain> chains = GameFieldAnalyst.GetChains(_gameField.Cells, _configuration);
+                List<ChainEvent> chains = GameFieldAnalyst.GetChains(_gameField.Cells, _configuration);
 
                 for (int i = 0; i < chains.Count; i++)
                 {
@@ -40,7 +40,7 @@ namespace Match3.Systems.Game.UpdateFieldData
             var chainEntity = _ecsWorld.NewEntity();
             chainEntity.Set<ExplosionEvent>();
 
-            ref Chain chain = ref chainEntity.Set<Chain>();
+            ref ChainEvent chain = ref chainEntity.Set<ChainEvent>();
             chain.Size = chainSize;
             chain.Direction = direction;
             chain.Position = startPosition;

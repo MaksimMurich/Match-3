@@ -72,7 +72,7 @@
     <Compile Include="Assets\ExternalAssets\LeoEcs\UnityIntegration\Runtime\EditorHelpers.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Cell.cs" />
     <Compile Include="Assets\Scripts\Components\Game\CellType.cs" />
-    <Compile Include="Assets\Scripts\Components\Game\Chain.cs" />
+    <Compile Include="Assets\Scripts\Components\Game\ChainEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\DeselectEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\EmptyViewEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\ExplodedEvent.cs" />
