@@ -56,6 +56,7 @@ namespace Match3
 
                 // update game field
                 .Add(new DetectChainsSystem())
+                .Add(new DestroyEntities())
                 .Add(new FillFieldSystem())
                 .Add(new CreateCellsViewSystem())
 

@@ -14,55 +14,18 @@ namespace Match3.Systems.Game
         private readonly EcsWorld _ecsWorld = null;
         private readonly GameField _gameField = null;
         private readonly Configuration _configuration = null;
-        private readonly EcsFilter<ExplodedEvent> _explodedEventFilter = null;
-        private readonly EcsFilter<Chain>.Exclude<FilledChain> _chainFilter = null;
+        private readonly EcsFilter<Chain, Destroyed>.Exclude<FilledChain> _chainFilter = null;
 
         public void Run()
         {
-            if (_explodedEventFilter.GetEntitiesCount() == 0)
-            {
-                return;
-            }
-
-            bool destroyed = DestroyEntitiesFromField();
-
-            if (destroyed)
-            {
-                AddBonusCells();
-                FallToEmptySpace();
-                FillEmptySpaces();
-            }
+            AddBonusCells();
+            FallToEmptySpace();
+            FillEmptySpaces();
 
             foreach (int index in _chainFilter)
             {
                 _chainFilter.GetEntity(index).Set<FilledChain>();
             }
-        }
-
-        private bool DestroyEntitiesFromField()
-        {
-            bool destroyed = false;
-
-            foreach (int index in _chainFilter)
-            {
-                Chain chain = _chainFilter.Get1(index);
-
-                for (int i = 0; i < chain.Size; i++)
-                {
-                    Vector2Int cellPosition = chain.Position + chain.Direction * i;
-
-                    if (_gameField.Cells[cellPosition].Equals(EcsEntity.Null))
-                    {
-                        continue;
-                    }
-
-                    _gameField.Cells[cellPosition].Destroy();
-                    _gameField.Cells[cellPosition] = EcsEntity.Null;
-                    destroyed = true;
-                }
-            }
-
-            return destroyed;
         }
 
         private void AddBonusCells()
