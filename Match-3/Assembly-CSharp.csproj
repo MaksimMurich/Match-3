@@ -111,7 +111,10 @@
     <Compile Include="Assets\Scripts\Systems\Game\CreateCellsViewSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\DestroyEntities.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\DetectChainsSystem.cs" />
-    <Compile Include="Assets\Scripts\Systems\Game\FillFieldSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\FillField\AddBonusCellsSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\FillField\FallCellsToEmptySpaceSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\FillField\FillEmptyCellsSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\FillField\MarkChainsFilledSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\ConfigurateCameraSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\InitializeFieldSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\SetCellConfigSpawnRangesSystem.cs" />

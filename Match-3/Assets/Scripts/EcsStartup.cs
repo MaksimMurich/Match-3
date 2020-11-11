@@ -6,6 +6,7 @@ using Match3.Components.Game.Events;
 using Match3.Configurations;
 using Match3.Systems.Game;
 using Match3.Systems.Game.Animations;
+using Match3.Systems.Game.FillField;
 using Match3.Systems.Game.Initialization;
 using Match3.Systems.Game.UserInputs;
 using UnityEngine;
@@ -54,13 +55,16 @@ namespace Match3
                 .Add(new DeselectCellSystem())
                 .Add(new UserSwapSystem())
 
-                // update game field
+                // update game field data
                 .Add(new DetectChainsSystem())
                 .Add(new DestroyEntities())
-                .Add(new FillFieldSystem())
-                .Add(new CreateCellsViewSystem())
+                .Add(new AddBonusCellsSystem())
+                .Add(new FallCellsToEmptySpaceSystem())
+                .Add(new FillEmptyCellsSystem())
+                .Add(new MarkChainsFilledSystem())
 
                 // view effects
+                .Add(new CreateCellsViewSystem())
                 .Add(new AnimateCellViewPositionSystem())
                 .Add(new AnimateEmptySwapSystem())
                 .Add(new ScaleSelectedCellSystem())
