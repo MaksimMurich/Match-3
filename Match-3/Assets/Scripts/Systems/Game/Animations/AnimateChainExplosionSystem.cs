@@ -9,12 +9,12 @@ using UnityEngine;
 
 namespace Match3.Assets.Scripts.Systems.Game.Animations
 {
-    public sealed class ChainExplosionSystem : IEcsRunSystem
+    public sealed class AnimateChainExplosionSystem : IEcsRunSystem
     {
         private readonly GameField _gameField = null;
         private readonly Configuration _configuration = null;
         private readonly ObjectPool _objectPool = null;
-        private readonly EcsFilter<Chain, ExplosionEvent>.Exclude<ExplodedEvent> _filter = null;
+        private readonly EcsFilter<Chain, ExplosionEvent>.Exclude<ExplosionAnimatedEvent> _filter = null;
 
         public void Run()
         {
@@ -42,7 +42,17 @@ namespace Match3.Assets.Scripts.Systems.Game.Animations
         private void Hide(CellView cell, EcsEntity chain)
         {
             _objectPool.Stash(cell);
-            chain.Set<ExplodedEvent>();
+            chain.Set<ExplosionAnimatedEvent>();
+        }
+    }
+
+    public class AnimateCellExplosionSystem : IEcsRunSystem
+    {
+        public readonly GameField _gameField = null;
+
+        public void Run()
+        {
+            
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Match3.Systems.Game.FillField
 {
-    public sealed class AddBonusCellsSystem : IEcsRunSystem
+    public sealed class AddFourInRowBonusCellsSystem : IEcsRunSystem
     {
         private readonly EcsWorld _ecsWorld = null;
         private readonly GameField _gameField = null;
