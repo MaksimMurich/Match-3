@@ -23,12 +23,12 @@ namespace Match3.Systems.Game.Animations
             {
                 Cell cell = _filter.Get1(index);
                 EcsEntity entity = _filter.GetEntity(index);
-                entity.Set<Moving>();
+                entity.Set<ChangeFieldAnimating>();
                 Vector2Int position = _filter.Get2(index);
 
                 cell.View.transform
-                    .DOMove(new Vector3(position.x, position.y), _configuration.Animation.UpdateCellPositionSeconds)
-                    .OnComplete(() => entity.Unset<Moving>());
+                    .DOMove(new Vector3(position.x, position.y), _configuration.Animation.CellMovingSeconds)
+                    .OnComplete(() => entity.Unset<ChangeFieldAnimating>());
             }
         }
     }

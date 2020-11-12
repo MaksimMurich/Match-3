@@ -30,28 +30,74 @@ namespace Match3.Assets.Scripts.Services
                         continue;
                     }
 
-                    Vector2Int direction = new Vector2Int(0, 1);
-                    Chain horisontal = GetChain(position, direction, cells, _configuration.MinRewardableChain);
-
-                    if (horisontal.Size >= _configuration.MinRewardableChain)
-                    {
-                        result.Add(horisontal);
-                    }
-
-                    direction = new Vector2Int(1, 0);
-                    Chain vertical = GetChain(position, direction, cells, _configuration.MinRewardableChain);
-
-                    if (vertical.Size >= _configuration.MinRewardableChain)
-                    {
-                        result.Add(vertical);
-                    }
+                    result.AddRange(GetCellChains(cells, _configuration, position));
                 }
             }
 
             return result;
         }
 
-        private static Chain GetChain(Vector2Int startPosition, Vector2Int direction, Dictionary<Vector2Int, EcsEntity> cells, int minRewardableCHain)
+        public static bool CheckCellInChain(Dictionary<Vector2Int, EcsEntity> cells, Configuration _configuration, Vector2Int position)
+        {
+            Vector2Int direction = new Vector2Int(0, 1);
+            Chain horisontalRight = GetChain(position, direction, cells);
+
+            if (horisontalRight.Size >= _configuration.MinRewardableChain)
+            {
+                return true;
+            }
+
+            direction = new Vector2Int(0, -1);
+            Chain horisontalLeft = GetChain(position, direction, cells);
+
+            if (horisontalLeft.Size >= _configuration.MinRewardableChain)
+            {
+                return true;
+            }
+
+            direction = new Vector2Int(1, 0);
+            Chain verticalUp = GetChain(position, direction, cells);
+
+            if (verticalUp.Size >= _configuration.MinRewardableChain)
+            {
+                return true;
+            }
+
+            direction = new Vector2Int(-1, 0);
+            Chain verticalDown = GetChain(position, direction, cells);
+
+            if (verticalDown.Size >= _configuration.MinRewardableChain)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private static List<Chain> GetCellChains(Dictionary<Vector2Int, EcsEntity> cells, Configuration _configuration, Vector2Int position)
+        {
+            List<Chain> result = new List<Chain>();
+
+            Vector2Int direction = new Vector2Int(0, 1);
+            Chain horisontal = GetChain(position, direction, cells);
+
+            if (horisontal.Size >= _configuration.MinRewardableChain)
+            {
+                result.Add(horisontal);
+            }
+
+            direction = new Vector2Int(1, 0);
+            Chain vertical = GetChain(position, direction, cells);
+
+            if (vertical.Size >= _configuration.MinRewardableChain)
+            {
+                result.Add(vertical);
+            }
+
+            return result;
+        }
+
+        private static Chain GetChain(Vector2Int startPosition, Vector2Int direction, Dictionary<Vector2Int, EcsEntity> cells)
         {
             Vector2Int position = startPosition;
 

@@ -8,7 +8,7 @@ namespace Match3.Systems.Game.UserInputs
 {
     public sealed class SelectCellSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<Cell, Moving> _ecsFilter = null;
+        private readonly EcsFilter<Cell, ChangeFieldAnimating> _ecsFilter = null;
         private readonly EcsFilter<Chain>.Exclude<FilledChain> _chainFilter = null;
 
         public void Run()

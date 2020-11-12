@@ -15,7 +15,7 @@ namespace Match3.Systems.Game
         private readonly EcsWorld _ecsWorld = null;
         private readonly GameField _gameField = null;
         private readonly Configuration _configuration = null;
-        private readonly EcsFilter<Cell, Moving> _movingFilter = null;
+        private readonly EcsFilter<Cell, ChangeFieldAnimating> _movingFilter = null;
 
         public void Run()
         {

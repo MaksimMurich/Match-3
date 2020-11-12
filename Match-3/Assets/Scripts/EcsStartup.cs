@@ -41,6 +41,8 @@ namespace Match3
                 // initialization
                 .Add(new SetCellConfigSpawnRangesSystem())
                 .Add(new InitializeFieldSystem())
+                .Add(new InitializeFieldViewSystem())
+                .Add(new AnimateInitializedCellsMovingSystem())
                 .Add(new ConfigurateCameraSystem())
 
                 // user input event handlers
@@ -54,19 +56,19 @@ namespace Match3
                 .Add(new DeselectCellSystem())
                 .Add(new UserSwapSystem())
 
-                // update game field
-                .Add(new DetectChainsSystem())
-                .Add(new FillFieldSystem())
-                .Add(new CreateCellsViewSystem())
-                .Add(new AnimateCellViewPositionSystem())
-                .Add(new AnimateEmptySwapSystem())
+                //// update game field
+                //.Add(new DetectChainsSystem())
+                //.Add(new FillFieldSystem())
+                //.Add(new CreateCellsViewSystem())
+                //.Add(new AnimateCellViewPositionSystem())
+                //.Add(new AnimateEmptySwapSystem())
 
-                // view effects
-                .Add(new ScaleSelectedCellSystem())
-                .Add(new UnscaleDeselectedCellSystem())
-                .Add(new ChainExplosionSystem())
-                .Add(new ChainRewardSystem())
-                .Add(new AnimateRewardSystem())
+                //// view effects
+                //.Add(new ScaleSelectedCellSystem())
+                //.Add(new UnscaleDeselectedCellSystem())
+                //.Add(new ChainExplosionSystem())
+                //.Add(new ChainRewardSystem())
+                //.Add(new AnimateRewardSystem())
 
                 // register one-frame components
                 .OneFrame<SelectEvent>()

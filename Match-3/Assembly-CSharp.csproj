@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Components\Game\Cell.cs" />
     <Compile Include="Assets\Scripts\Components\Game\CellType.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Chain.cs" />
+    <Compile Include="Assets\Scripts\Components\Game\ChangeFieldAnimating.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\DeselectEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\EmptyViewEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\ExplodedEvent.cs" />
@@ -83,7 +84,6 @@
     <Compile Include="Assets\Scripts\Components\Game\FieldInputLocker.cs" />
     <Compile Include="Assets\Scripts\Components\Game\FilledChain.cs" />
     <Compile Include="Assets\Scripts\Components\Game\MoveBack.cs" />
-    <Compile Include="Assets\Scripts\Components\Game\Moving.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Rewarded.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Selected.cs" />
     <Compile Include="Assets\Scripts\Configurations\AnimationsConfiguration.cs" />
@@ -106,8 +106,10 @@
     <Compile Include="Assets\Scripts\Systems\Game\CreateCellsViewSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\DetectChainsSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\FillFieldSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\Initialization\AnimateInitializedCellsMovingSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\ConfigurateCameraSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\InitializeFieldSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\Initialization\InitializeFieldViewSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\SetCellConfigSpawnRangesSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\UserInputs\CancelSettingsSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\UserInputs\ChangeSettingsSystem.cs" />
