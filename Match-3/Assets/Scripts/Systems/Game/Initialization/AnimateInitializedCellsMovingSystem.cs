@@ -2,6 +2,7 @@
 using Leopotam.Ecs;
 using Match3.Components.Game;
 using Match3.Configurations;
+using System;
 using UnityEngine;
 
 namespace Match3.Systems.Game.Initialization
@@ -17,14 +18,21 @@ namespace Match3.Systems.Game.Initialization
             {
                 for (int row = 0; row < _configuration.LevelHeight; row++)
                 {
-                    ref Cell cell = ref _gameField.Cells[new Vector2Int(row, column)].Ref<Cell>().Unref();
+                    EcsEntity entity = _gameField.Cells[new Vector2Int(row, column)];
+                    ref Cell cell = ref entity.Ref<Cell>().Unref();
                     _gameField.Cells[new Vector2Int(row, column)].Set<ChangeFieldAnimating>();
 
                     Vector3 targetPosition = new Vector3(row, column);
-                    cell.View.transform.DOMove(targetPosition, _configuration.Animation.CellMovingSeconds);
-
+                    cell.View.transform
+                        .DOMove(targetPosition, _configuration.Animation.CellMovingSeconds)
+                        .OnComplete(() => RemoveFieldChangingState(entity));
                 }
             }
+        }
+
+        private void RemoveFieldChangingState(EcsEntity entity)
+        {
+            entity.Unset<ChangeFieldAnimating>();
         }
     }
 }

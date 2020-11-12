@@ -11,7 +11,7 @@ namespace Match3.Systems.Game.UserInputs
 
         public void Run()
         {
-            if (_filter.GetEntitiesCount() == 0 || !Input.GetMouseButtonUp(0))
+            if (!Input.GetMouseButtonUp(0))
             {
                 return;
             }

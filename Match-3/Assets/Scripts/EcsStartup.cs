@@ -4,8 +4,6 @@ using Match3.Assets.Scripts.Systems.Game.Animations;
 using Match3.Assets.Scripts.Systems.Game.Initialization;
 using Match3.Components.Game.Events;
 using Match3.Configurations;
-using Match3.Systems.Game;
-using Match3.Systems.Game.Animations;
 using Match3.Systems.Game.Initialization;
 using Match3.Systems.Game.UserInputs;
 using UnityEngine;
@@ -64,8 +62,8 @@ namespace Match3
                 //.Add(new AnimateEmptySwapSystem())
 
                 //// view effects
-                //.Add(new ScaleSelectedCellSystem())
-                //.Add(new UnscaleDeselectedCellSystem())
+                .Add(new ScaleSelectedCellSystem())
+                .Add(new UnscaleDeselectedCellSystem())
                 //.Add(new ChainExplosionSystem())
                 //.Add(new ChainRewardSystem())
                 //.Add(new AnimateRewardSystem())

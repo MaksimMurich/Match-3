@@ -18,9 +18,12 @@ namespace Match3.Systems.Game.Initialization
             {
                 for (int row = 0; row < _configuration.LevelHeight; row++)
                 {
-                    ref Cell cell = ref _gameField.Cells[new Vector2Int(column, row)].Ref<Cell>().Unref();
+                    Vector2Int position = new Vector2Int(column, row);
+                    EcsEntity entity = _gameField.Cells[position];
+                    ref Cell cell = ref entity.Ref<Cell>().Unref();
                     cell.View = _objectPool.Get(cell.Configuration.ViewExample);
-                    cell.View.transform.position = new Vector3(column, _configuration.LevelHeight + 1);
+                    cell.View.transform.position = new Vector3(position.x, _configuration.LevelHeight + 1);
+                    cell.View.Entity = entity;
                 }
             }
         }
