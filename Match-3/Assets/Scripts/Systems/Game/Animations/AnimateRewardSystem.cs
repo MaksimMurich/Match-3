@@ -7,7 +7,7 @@ namespace Match3.Assets.Scripts.Systems.Game.Animations
     {
         private readonly SceneData _sceneData = null;
         private readonly PlayerState _playerState = null;
-        private readonly EcsFilter<RewardEvent> _filter = null;
+        private readonly EcsFilter<RewardRequest> _filter = null;
 
         public void Run()
         {

@@ -10,7 +10,7 @@ namespace Match3.Assets.Scripts.Systems.Game.Animations
     public sealed class UnscaleDeselectedCellSystem : IEcsRunSystem
     {
         private readonly Configuration _configuration = null;
-        private readonly EcsFilter<Cell, DeselectEvent> _filter = null;
+        private readonly EcsFilter<Cell, DeselectRequest> _filter = null;
 
         public void Run()
         {

@@ -1,27 +1,20 @@
 ﻿using Leopotam.Ecs;
-using Match3.Assets.Scripts.Services;
 using Match3.Components.Game;
 using Match3.Components.Game.Events;
 using Match3.Configurations;
 using UnityEngine;
 
-namespace Match3.Systems.Game.UserInputs
+namespace Match3.Systems.Game.Swap
 {
-    public sealed class UserSwapSystem : IEcsRunSystem
+    public sealed class UserSwapInputSystem : IEcsRunSystem
     {
         private readonly SceneData _sceneData = null;
         private readonly Configuration _configuration = null;
         private readonly GameField _gameField = null;
         private readonly EcsFilter<Cell, Vector2Int, Selected> _filter = null;
-        private readonly EcsFilter<FieldInputLocker> _lockFilter = null;
 
         public void Run()
         {
-            if (_lockFilter.GetEntitiesCount() > 0)
-            {
-                return;
-            }
-
             Vector2 mousePosition = _sceneData.Camera.ScreenToWorldPoint(Input.mousePosition);
 
             foreach (int index in _filter)
@@ -52,27 +45,15 @@ namespace Match3.Systems.Game.UserInputs
                     continue;
                 }
 
-                cellEntity.Unset<Selected>();
-                cellEntity.Set<DeselectEvent>();
-                cellEntity.Set<Vector2Int>() = targetPosition;
-                cellEntity.Set<UpdateViewPositionEvent>();
-
-                EcsEntity secondCell = _gameField.Cells[targetPosition];
-                secondCell.Set<Vector2Int>() = fieldPosition;
-                secondCell.Set<UpdateViewPositionEvent>();
-
-                _gameField.Cells[fieldPosition] = secondCell;
-                _gameField.Cells[targetPosition] = cellEntity;
-
-                bool hasChain = GameFieldAnalyst.HasChain(_gameField.Cells, _configuration);
-
-                if (!hasChain)
+                SwapRequest swap = new SwapRequest()
                 {
-                    _gameField.Cells[fieldPosition] = cellEntity;
-                    _gameField.Cells[targetPosition] = secondCell;
-                    _gameField.Cells[fieldPosition].Set<MoveBack>().Position = fieldPosition;
-                    _gameField.Cells[targetPosition].Set<MoveBack>().Position = targetPosition;
-                }
+                    From = fieldPosition,
+                    To = targetPosition
+                };
+
+                cellEntity.Set<SwapRequest>() = swap;
+                cellEntity.Unset<Selected>();
+                cellEntity.Set<DeselectRequest>();
             }
         }
     }

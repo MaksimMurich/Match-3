@@ -98,7 +98,7 @@ namespace Match3.Systems.Game
                     _gameField.Cells[cellId] = EcsEntity.Null;
 
                     cell.Set<Vector2Int>() = targetCellPosition;
-                    cell.Set<UpdateViewPositionEvent>().StartPosition = cellId;
+                    cell.Set<UpdateViewPositionRequest>().StartPosition = cellId;
                     fall = true;
                 }
             }

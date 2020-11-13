@@ -2,7 +2,7 @@
 
 namespace Match3.Components.Game.Events
 {
-    public struct UpdateViewPositionEvent
+    public struct UpdateViewPositionRequest
     {
         public Vector2 StartPosition;
     }

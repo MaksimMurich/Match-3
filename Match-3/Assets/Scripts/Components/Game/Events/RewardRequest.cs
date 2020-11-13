@@ -1,7 +1,6 @@
 ﻿namespace Match3.Components.Game.Events
 {
-    public struct DeselectEvent
+    public struct RewardRequest
     {
-
     }
 }

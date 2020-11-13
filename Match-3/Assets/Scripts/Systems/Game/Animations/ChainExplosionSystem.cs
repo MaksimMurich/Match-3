@@ -14,7 +14,7 @@ namespace Match3.Assets.Scripts.Systems.Game.Animations
         private readonly GameField _gameField = null;
         private readonly Configuration _configuration = null;
         private readonly ObjectPool _objectPool = null;
-        private readonly EcsFilter<Chain, ExplosionEvent>.Exclude<ExplodedEvent> _filter = null;
+        private readonly EcsFilter<Chain, ExplosionRequest>.Exclude<ExplodedEvent> _filter = null;
 
         public void Run()
         {

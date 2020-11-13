@@ -11,7 +11,7 @@ namespace Match3.Systems.Game.Animations
     public sealed class AnimateEmptySwapSystem : IEcsRunSystem
     {
         private readonly Configuration _configuration = null;
-        private readonly EcsFilter<Cell, Vector2Int, UpdateViewPositionEvent, MoveBack> _filter = null;
+        private readonly EcsFilter<Cell, Vector2Int, UpdateViewPositionRequest, MoveBack> _filter = null;
 
         public void Run()
         {

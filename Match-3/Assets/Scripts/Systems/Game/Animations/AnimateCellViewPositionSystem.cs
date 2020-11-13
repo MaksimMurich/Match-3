@@ -10,7 +10,7 @@ namespace Match3.Systems.Game.Animations
     public sealed class AnimateCellViewPositionSystem : IEcsRunSystem
     {
         private readonly Configuration _configuration = null;
-        private readonly EcsFilter<Cell, Vector2Int, UpdateViewPositionEvent>.Exclude<MoveBack> _filter = null;
+        private readonly EcsFilter<Cell, Vector2Int, UpdateViewPositionRequest>.Exclude<MoveBack> _filter = null;
 
         public void Run()
         {

@@ -5,7 +5,9 @@ using Match3.Assets.Scripts.Systems.Game.Initialization;
 using Match3.Components.Game.Events;
 using Match3.Configurations;
 using Match3.Systems.Game.Initialization;
+using Match3.Systems.Game.Swap;
 using Match3.Systems.Game.UserInputs;
+using Match3.Systems.Game.UserInputs.UI;
 using UnityEngine;
 
 namespace Match3
@@ -52,9 +54,16 @@ namespace Match3
 
                 .Add(new SelectCellSystem())
                 .Add(new DeselectCellSystem())
-                .Add(new UserSwapSystem())
+
+                .Add(new UserSwapInputSystem())
+                .Add(new SwapSystem())
+                .Add(new AnimateSwapSystem())
+                .Add(new AnimateSwapBackSystem())
+                //.Add(new SwapBackRequestSystem())
 
                 //// update game field
+                //.Add(new UpdateFieldOnSwapSystem())
+                //.Add(new ActivateBonusesOnSwapSystem())
                 //.Add(new DetectChainsSystem())
                 //.Add(new FillFieldSystem())
                 //.Add(new CreateCellsViewSystem())
@@ -69,13 +78,15 @@ namespace Match3
                 //.Add(new AnimateRewardSystem())
 
                 // register one-frame components
-                .OneFrame<SelectEvent>()
-                .OneFrame<DeselectEvent>()
-                .OneFrame<ExplosionEvent>()
+                .OneFrame<SelectCellRequest>()
+                .OneFrame<DeselectRequest>()
+                .OneFrame<SwapRequest>()
+                .OneFrame<AnimateSwapRequest>()
+                .OneFrame<UpdateViewPositionRequest>()
+                .OneFrame<RewardRequest>()
+                .OneFrame<ExplosionRequest>()
                 .OneFrame<ExplodedEvent>()
                 .OneFrame<EmptyViewEvent>()
-                .OneFrame<UpdateViewPositionEvent>()
-                .OneFrame<RewardEvent>()
 
                 // inject service instances here (order doesn't important), for example:
                 .Inject(_gameField)

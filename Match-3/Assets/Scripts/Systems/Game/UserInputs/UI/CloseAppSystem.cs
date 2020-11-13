@@ -1,6 +1,6 @@
 ﻿using Leopotam.Ecs;
 
-namespace Match3.Systems.Game.UserInputs
+namespace Match3.Systems.Game.UserInputs.UI
 {
     public sealed class CloseAppSystem : IEcsInitSystem
     {

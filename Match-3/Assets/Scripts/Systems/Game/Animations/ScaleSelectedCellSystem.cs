@@ -10,7 +10,7 @@ namespace Match3.Assets.Scripts.Systems.Game.Animations
     public sealed class ScaleSelectedCellSystem : IEcsRunSystem
     {
         private readonly Configuration _configuration = null;
-        private readonly EcsFilter<Cell, SelectEvent> _filter = null;
+        private readonly EcsFilter<Cell, SelectCellRequest> _filter = null;
 
         public void Run()
         {

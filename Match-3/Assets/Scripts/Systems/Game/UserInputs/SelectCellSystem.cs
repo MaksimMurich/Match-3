@@ -37,7 +37,7 @@ namespace Match3.Systems.Game.UserInputs
                 return;
             }
 
-            cellView.Entity.Set<SelectEvent>();
+            cellView.Entity.Set<SelectCellRequest>();
             cellView.Entity.Set<Selected>();
         }
     }

@@ -24,7 +24,7 @@ namespace Match3.Systems.Game
 
                 cell.View = view;
                 view.transform.position = new Vector2(_filter.Get3(index).x, _configuration.LevelHeight);
-                view.Entity.Set<UpdateViewPositionEvent>();
+                view.Entity.Set<UpdateViewPositionRequest>();
             }
         }
     }

@@ -20,7 +20,7 @@ namespace Match3.Systems.Game.UserInputs
             {
                 EcsEntity cell = _filter.GetEntity(index);
                 cell.Unset<Selected>();
-                cell.Set<DeselectEvent>();
+                cell.Set<DeselectRequest>();
             }
         }
     }

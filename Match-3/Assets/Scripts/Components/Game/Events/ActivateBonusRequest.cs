@@ -1,6 +1,6 @@
 ﻿namespace Match3.Components.Game.Events
 {
-    public struct RewardEvent
+    public struct ActivateBonusRequest
     {
     }
 }
