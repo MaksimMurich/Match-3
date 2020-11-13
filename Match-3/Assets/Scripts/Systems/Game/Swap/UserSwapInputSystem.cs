@@ -53,7 +53,7 @@ namespace Match3.Systems.Game.Swap
 
                 cellEntity.Set<SwapRequest>() = swap;
                 cellEntity.Unset<Selected>();
-                cellEntity.Set<DeselectRequest>();
+                cellEntity.Set<DeselectCellAnimationRequest>();
             }
         }
     }

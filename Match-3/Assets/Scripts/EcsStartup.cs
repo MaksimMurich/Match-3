@@ -52,13 +52,23 @@ namespace Match3
                 .Add(new CancelSettingsSystem())
                 .Add(new CloseAppSystem())
 
+                //select
                 .Add(new SelectCellSystem())
-                .Add(new DeselectCellSystem())
+                .Add(new ScaleSelectedCellSystem())
+                .OneFrame<SelectCellAnimationRequest>()
 
+                // swap
                 .Add(new UserSwapInputSystem())
                 .Add(new SwapSystem())
+                .OneFrame<SwapRequest>()
                 .Add(new AnimateSwapSystem())
                 .Add(new AnimateSwapBackSystem())
+                .OneFrame<AnimateSwapRequest>()
+                .OneFrame<AnimateSwapBackRequest>()
+
+                .Add(new DeselectCellSystem())
+                .Add(new UnscaleDeselectedCellSystem())
+                .OneFrame<DeselectCellAnimationRequest>()
                 //.Add(new SwapBackRequestSystem())
 
                 //// update game field
@@ -71,17 +81,11 @@ namespace Match3
                 //.Add(new AnimateEmptySwapSystem())
 
                 //// view effects
-                .Add(new ScaleSelectedCellSystem())
-                .Add(new UnscaleDeselectedCellSystem())
                 //.Add(new ChainExplosionSystem())
                 //.Add(new ChainRewardSystem())
                 //.Add(new AnimateRewardSystem())
 
                 // register one-frame components
-                .OneFrame<SelectCellRequest>()
-                .OneFrame<DeselectRequest>()
-                .OneFrame<SwapRequest>()
-                .OneFrame<AnimateSwapRequest>()
                 .OneFrame<UpdateViewPositionRequest>()
                 .OneFrame<RewardRequest>()
                 .OneFrame<ExplosionRequest>()

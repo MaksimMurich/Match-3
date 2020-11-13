@@ -16,6 +16,7 @@ namespace Match3.Systems.Game.Swap
         {
             foreach (int index in _filter)
             {
+                Debug.Log("SwapBack");
                 EcsEntity entity = _filter.GetEntity(index);
                 entity.Set<ChangeFieldAnimating>();
                 float zPosition = _filter.Get3(index).MainCell ? -1 : 0;
@@ -27,9 +28,8 @@ namespace Match3.Systems.Game.Swap
 
                 Transform view = _filter.Get1(index).View.transform;
                 view.position += new Vector3(0, 0, zPosition - view.position.z);
-                float swapDuration = _configuration.Animation.SwapDuration / 2f;
-                view.DOMove(targetMovePosition, swapDuration)
-                    .OnComplete(() => view.DOMove(startPosition, swapDuration)
+                view.DOMove(targetMovePosition, _configuration.Animation.SwapDuration)
+                    .OnComplete(() => view.DOMove(startPosition, _configuration.Animation.SwapDuration)
                     .OnComplete(() => OnSwapBackCompleate(entity, view)));
             }
         }

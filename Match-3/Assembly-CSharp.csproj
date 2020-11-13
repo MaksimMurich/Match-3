@@ -77,12 +77,12 @@
     <Compile Include="Assets\Scripts\Components\Game\Chain.cs" />
     <Compile Include="Assets\Scripts\Components\Game\ChangeFieldAnimating.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\ActivateBonusRequest.cs" />
-    <Compile Include="Assets\Scripts\Components\Game\Events\DeselectRequest.cs" />
+    <Compile Include="Assets\Scripts\Components\Game\Events\DeselectCellAnimationRequest.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\EmptyViewEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\ExplodedEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\ExplosionRequest.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\RewardRequest.cs" />
-    <Compile Include="Assets\Scripts\Components\Game\Events\SelectCellRequest.cs" />
+    <Compile Include="Assets\Scripts\Components\Game\Events\SelectCellAnimationRequest.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\Swap\AnimateSwapBackRequest.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\Swap\AnimateSwapRequest.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\Swap\SwapRequest.cs" />
