@@ -11,7 +11,7 @@ namespace Match3.Systems.Game.UserInputs
 
         public void Run()
         {
-            if (_filter.GetEntitiesCount() == 0 || !Input.GetMouseButtonUp(0))
+            if (!Input.GetMouseButtonUp(0))
             {
                 return;
             }
@@ -20,7 +20,7 @@ namespace Match3.Systems.Game.UserInputs
             {
                 EcsEntity cell = _filter.GetEntity(index);
                 cell.Unset<Selected>();
-                cell.Set<DeselectEvent>();
+                cell.Set<DeselectCellAnimationRequest>();
             }
         }
     }

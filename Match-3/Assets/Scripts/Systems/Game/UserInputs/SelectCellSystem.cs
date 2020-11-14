@@ -8,15 +8,9 @@ namespace Match3.Systems.Game.UserInputs
 {
     public sealed class SelectCellSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<Cell, Moving> _ecsFilter = null;
-        private readonly EcsFilter<Chain>.Exclude<FilledChain> _chainFilter = null;
-
         public void Run()
         {
-            bool moving = _ecsFilter.GetEntitiesCount() > 0;
-            bool hasChais = _chainFilter.GetEntitiesCount() > 0;
-
-            if (moving || hasChais || !Input.GetMouseButtonDown(0))
+            if (!Input.GetMouseButtonDown(0))
             {
                 return;
             }
@@ -37,7 +31,7 @@ namespace Match3.Systems.Game.UserInputs
                 return;
             }
 
-            cellView.Entity.Set<SelectEvent>();
+            cellView.Entity.Set<SelectCellAnimationRequest>();
             cellView.Entity.Set<Selected>();
         }
     }
