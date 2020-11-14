@@ -1,9 +1,12 @@
 using Leopotam.Ecs;
 using Match3.Assets.Scripts.Services;
 using Match3.Assets.Scripts.Systems.Game.Animations;
+using Match3.Assets.Scripts.Systems.Game.CellsExplosion;
 using Match3.Assets.Scripts.Systems.Game.Initialization;
+using Match3.Components.Game;
 using Match3.Components.Game.Events;
 using Match3.Configurations;
+using Match3.Systems.Game;
 using Match3.Systems.Game.Initialization;
 using Match3.Systems.Game.Swap;
 using Match3.Systems.Game.UserInputs;
@@ -36,14 +39,13 @@ namespace Match3
 #endif
 
             _systems
-                // register systems
 
                 // initialization
                 .Add(new SetCellConfigSpawnRangesSystem())
                 .Add(new InitializeFieldSystem())
                 .Add(new InitializeFieldViewSystem())
-                .Add(new AnimateInitializedCellsMovingSystem())
                 .Add(new ConfigurateCameraSystem())
+                .Add(new AnimateInitializedCellsMovingSystem())
 
                 // user input event handlers
                 .Add(new OpenSettingsSystem())
@@ -52,29 +54,39 @@ namespace Match3
                 .Add(new CancelSettingsSystem())
                 .Add(new CloseAppSystem())
 
-                //select
+                //select cell
+                .OneFrame<SelectCellAnimationRequest>()
+                .OneFrame<DeselectCellAnimationRequest>()
                 .Add(new SelectCellSystem())
                 .Add(new ScaleSelectedCellSystem())
-                .OneFrame<SelectCellAnimationRequest>()
 
                 // swap
-                .Add(new UserSwapInputSystem())
-                .Add(new SwapSystem())
                 .OneFrame<SwapRequest>()
-                .Add(new AnimateSwapSystem())
-                .Add(new AnimateSwapBackSystem())
+                .Add(new UserSwapInputSystem())
                 .OneFrame<AnimateSwapRequest>()
                 .OneFrame<AnimateSwapBackRequest>()
+                .Add(new SwapSystem())
+                .Add(new AnimateSwapSystem())
+                .Add(new AnimateSwapBackSystem())
 
+                // deselect cell
                 .Add(new DeselectCellSystem())
                 .Add(new UnscaleDeselectedCellSystem())
-                .OneFrame<DeselectCellAnimationRequest>()
-                //.Add(new SwapBackRequestSystem())
 
+                // create chains
+                .OneFrame<ChainEvent>()
+                .Add(new CreateChainsSystem()) // on SwapRequest or field was unlocked
+
+                // explode cells
+                .OneFrame<AnimateExplosionRequest>()
+                .Add(new MarkCellsToExplosionSystem())
+                // промаркировать к анимации и к удалению. «апустить анимации. ”далить €чейки без анимации из пол€
+                //.OneFrame<AnimateDestroyCellRequest>()
+                //.Add(MarkCellsToExplosionSystem()) проходит по цепочкам и маркирует €чейки дл€ взрыва
+                //.OneFrame<DestroyCellRequest>() порождаетс€ вконце анимации взрыва €чейки
+                //.Add(AnimateCellExplosionSystem()) анимирует взрыв 
+                //.Add(DestroyCellsSystem())
                 //// update game field
-                //.Add(new UpdateFieldOnSwapSystem())
-                //.Add(new ActivateBonusesOnSwapSystem())
-                //.Add(new DetectChainsSystem())
                 //.Add(new FillFieldSystem())
                 //.Add(new CreateCellsViewSystem())
                 //.Add(new AnimateCellViewPositionSystem())
@@ -86,11 +98,11 @@ namespace Match3
                 //.Add(new AnimateRewardSystem())
 
                 // register one-frame components
-                .OneFrame<UpdateViewPositionRequest>()
-                .OneFrame<RewardRequest>()
-                .OneFrame<ExplosionRequest>()
-                .OneFrame<ExplodedEvent>()
-                .OneFrame<EmptyViewEvent>()
+                //.OneFrame<UpdateViewPositionRequest>()
+                //.OneFrame<RewardRequest>()
+                //.OneFrame<ExplosionRequest>()
+                //.OneFrame<ExplodedEvent>()
+                //.OneFrame<EmptyViewEvent>()
 
                 // inject service instances here (order doesn't important), for example:
                 .Inject(_gameField)

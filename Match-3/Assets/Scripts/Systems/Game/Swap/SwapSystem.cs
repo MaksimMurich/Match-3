@@ -33,7 +33,7 @@ namespace Match3.Systems.Game.Swap
                 _gameField.Cells[cellPosition] = secondCell;
                 _gameField.Cells[targetPosition] = swapCell;
 
-                if(GameFieldAnalyst.GetChains(_gameField.Cells, _configuration).Count == 0 && !swapCell.Has<FiveInRowBonus>() && !secondCell.Has<FiveInRowBonus>())
+                if (GameFieldAnalyst.GetChains(_gameField.Cells, _configuration).Count == 0 && !swapCell.Has<FiveInRowBonus>() && !secondCell.Has<FiveInRowBonus>())
                 {
                     _gameField.Cells[cellPosition] = swapCell;
                     _gameField.Cells[targetPosition] = secondCell;

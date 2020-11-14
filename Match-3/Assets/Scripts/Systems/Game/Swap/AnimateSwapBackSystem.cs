@@ -16,7 +16,6 @@ namespace Match3.Systems.Game.Swap
         {
             foreach (int index in _filter)
             {
-                Debug.Log("SwapBack");
                 EcsEntity entity = _filter.GetEntity(index);
                 entity.Set<ChangeFieldAnimating>();
                 float zPosition = _filter.Get3(index).MainCell ? -1 : 0;
