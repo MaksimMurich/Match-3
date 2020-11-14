@@ -79,13 +79,15 @@ namespace Match3
 
                 // explode cells
                 .OneFrame<AnimateExplosionRequest>()
-                .Add(new MarkCellsToExplosionSystem())
-                // промаркировать к анимации и к удалению. «апустить анимации. ”далить €чейки без анимации из пол€
-                //.OneFrame<AnimateDestroyCellRequest>()
-                //.Add(MarkCellsToExplosionSystem()) проходит по цепочкам и маркирует €чейки дл€ взрыва
-                //.OneFrame<DestroyCellRequest>() порождаетс€ вконце анимации взрыва €чейки
-                //.Add(AnimateCellExplosionSystem()) анимирует взрыв 
-                //.Add(DestroyCellsSystem())
+                .Add(new ChargeCellsToExplosionSystem())
+                .Add(new AnimateCellsExplosionSystem()) // mark as AnimateExplosion while animating
+                .Add(new DestroyExplodedCellsViewSystem())
+                .Add(new DestroyExplodedCellsSystem())
+
+                // fall down cell elements
+
+                // fill empty cells
+
                 //// update game field
                 //.Add(new FillFieldSystem())
                 //.Add(new CreateCellsViewSystem())

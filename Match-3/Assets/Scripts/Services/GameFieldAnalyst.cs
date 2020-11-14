@@ -107,6 +107,12 @@ namespace Match3.Assets.Scripts.Services
             }
 
             CellType cellType = GetCellType(position, cells);
+
+            if (cellType == CellType.Unknown)
+            {
+                return new ChainEvent();
+            }
+
             bool chained = CheckCellChainedBefore(direction, position, cellType, cells);
 
             if (chained)
@@ -142,7 +148,14 @@ namespace Match3.Assets.Scripts.Services
 
         private static CellType GetCellType(Vector2Int position, Dictionary<Vector2Int, EcsEntity> cells)
         {
-            return cells[position].Ref<Cell>().Unref().Configuration.Type;
+            if (cells[position].Has<Empty>())
+            {
+                return CellType.Unknown;
+            }
+            else
+            {
+                return cells[position].Ref<Cell>().Unref().Configuration.Type;
+            }
         }
     }
 }
