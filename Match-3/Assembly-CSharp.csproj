@@ -70,7 +70,9 @@
     <Compile Include="Assets\ExternalAssets\LeoEcs\EcsSystem.cs" />
     <Compile Include="Assets\ExternalAssets\LeoEcs\EcsWorld.cs" />
     <Compile Include="Assets\ExternalAssets\LeoEcs\UnityIntegration\Runtime\EditorHelpers.cs" />
+    <Compile Include="Assets\Scripts\Components\Game\AnimateCreatedViewRequest.cs" />
     <Compile Include="Assets\Scripts\Components\Game\AnimateExplosion.cs" />
+    <Compile Include="Assets\Scripts\Components\Game\AnimateFallDownRequest.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Bonuces\FiveInRowBonus.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Bonuces\FourInRowBonus.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Cell.cs" />
@@ -78,7 +80,8 @@
     <Compile Include="Assets\Scripts\Components\Game\ChainEvent.cs" />
     <Compile Include="Assets\Scripts\Components\Game\ChangeFieldAnimating.cs" />
     <Compile Include="Assets\Scripts\Components\Game\ChargedToExplosion.cs" />
-    <Compile Include="Assets\Scripts\Components\Game\Empty.cs" />
+    <Compile Include="Assets\Scripts\Components\Game\CreateCellViewRequest.cs" />
+    <Compile Include="Assets\Scripts\Components\Game\EmptySpace.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\ActivateBonusRequest.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\AnimateExplosionRequest.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\DeselectCellAnimationRequest.cs" />
@@ -112,8 +115,10 @@
     <Compile Include="Assets\Scripts\Systems\Game\Animations\UnscaleDeselectedCellSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\CellsExplosion\AnimateCellsExplosionSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\CellsExplosion\ChargeCellsToExplosionSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\CellsExplosion\CreateRandomCellsToEmptySpacesSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\CellsExplosion\DestroyExplodedCellsSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\CellsExplosion\DestroyExplodedCellsViewSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\CellsExplosion\FallCellsToEmptySpacesSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\ChainRewardSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\CreateCellsViewSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\CreateChainsSystem.cs" />
@@ -123,6 +128,8 @@
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\InitializeFieldSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\InitializeFieldViewSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\SetCellConfigSpawnRangesSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\Swap\AnimateCreatedViewSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\Swap\AnimateFallDownSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Swap\AnimateSwapBackSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Swap\AnimateSwapSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Swap\SwapSystem.cs" />

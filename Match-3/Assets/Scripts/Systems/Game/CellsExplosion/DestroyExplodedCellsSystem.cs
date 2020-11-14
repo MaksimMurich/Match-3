@@ -13,7 +13,7 @@ namespace Match3.Assets.Scripts.Systems.Game.CellsExplosion
             {
                 EcsEntity cell = _filter.GetEntity(index);
                 cell.Unset<ChargedToExplosion>();
-                cell.Set<Empty>();
+                cell.Set<EmptySpace>();
             }
         }
     }

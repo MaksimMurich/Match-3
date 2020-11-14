@@ -148,7 +148,7 @@ namespace Match3.Assets.Scripts.Services
 
         private static CellType GetCellType(Vector2Int position, Dictionary<Vector2Int, EcsEntity> cells)
         {
-            if (cells[position].Has<Empty>())
+            if (cells[position].Has<EmptySpace>())
             {
                 return CellType.Unknown;
             }

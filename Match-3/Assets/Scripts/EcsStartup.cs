@@ -84,9 +84,17 @@ namespace Match3
                 .Add(new DestroyExplodedCellsViewSystem())
                 .Add(new DestroyExplodedCellsSystem())
 
-                // fall down cell elements
+                // fill field
+                .OneFrame<AnimateFallDownRequest>()
+                .Add(new FallCellsToEmptySpacesSystem())
+                .Add(new AnimateFallDownSystem())
 
-                // fill empty cells
+                .OneFrame<CreateCellViewRequest>()
+                .Add(new CreateRandomCellsToEmptySpacesSystem())
+                .OneFrame<AnimateCreatedViewRequest>()
+                .Add(new CreateCellsViewSystem())
+                .Add(new AnimateCreatedViewSystem())
+
 
                 //// update game field
                 //.Add(new FillFieldSystem())

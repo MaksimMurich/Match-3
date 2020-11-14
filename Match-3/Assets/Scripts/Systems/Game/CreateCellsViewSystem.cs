@@ -12,7 +12,7 @@ namespace Match3.Systems.Game
     {
         private readonly ObjectPool _objectPool = null;
         private readonly Configuration _configuration = null;
-        private readonly EcsFilter<Cell, EmptyViewEvent, Vector2Int> _filter = null;
+        private readonly EcsFilter<Cell, CreateCellViewRequest, Vector2Int> _filter = null;
 
         public void Run()
         {
@@ -24,7 +24,7 @@ namespace Match3.Systems.Game
 
                 cell.View = view;
                 view.transform.position = new Vector2(_filter.Get3(index).x, _configuration.LevelHeight);
-                view.Entity.Set<UpdateViewPositionRequest>();
+                view.Entity.Set<AnimateCreatedViewRequest>();
             }
         }
     }
