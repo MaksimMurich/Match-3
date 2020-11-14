@@ -104,8 +104,9 @@ namespace Match3
 
                 //// view effects
                 //.Add(new ChainExplosionSystem())
-                //.Add(new ChainRewardSystem())
-                //.Add(new AnimateRewardSystem())
+                .OneFrame<RewardRequest>()
+                .Add(new ChainRewardSystem())
+                .Add(new AnimateRewardSystem())
 
                 // register one-frame components
                 //.OneFrame<UpdateViewPositionRequest>()

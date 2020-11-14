@@ -13,10 +13,10 @@ namespace Match3.Systems.Game.UserInputs
 
         public void Run()
         {
-            bool isFieldChanging = _changeFieldFilter.GetEntitiesCount() > 0;
+            //bool isFieldChanging = _changeFieldFilter.GetEntitiesCount() > 0;
             //bool hasChais = _chainFilter.GetEntitiesCount() > 0;
 
-            if (/*hasChais || */ isFieldChanging || !Input.GetMouseButtonDown(0))
+            if (/*hasChais || *//* isFieldChanging ||*/ !Input.GetMouseButtonDown(0))
             {
                 return;
             }

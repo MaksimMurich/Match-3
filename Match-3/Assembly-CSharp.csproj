@@ -96,7 +96,6 @@
     <Compile Include="Assets\Scripts\Components\Game\Events\UpdateViewPositionRequest.cs" />
     <Compile Include="Assets\Scripts\Components\Game\FilledChain.cs" />
     <Compile Include="Assets\Scripts\Components\Game\MoveBack.cs" />
-    <Compile Include="Assets\Scripts\Components\Game\Rewarded.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Selected.cs" />
     <Compile Include="Assets\Scripts\Configurations\AnimationsConfiguration.cs" />
     <Compile Include="Assets\Scripts\Configurations\CellConfiguration.cs" />

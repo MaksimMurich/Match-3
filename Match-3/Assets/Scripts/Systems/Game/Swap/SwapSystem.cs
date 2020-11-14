@@ -14,9 +14,17 @@ namespace Match3.Systems.Game.Swap
         private readonly GameField _gameField = null;
         private readonly Configuration _configuration = null;
         private readonly EcsFilter<Cell, Vector2Int, SwapRequest> _filter = null;
+        private readonly EcsFilter<ChangeFieldAnimating> _fieldChangers = null;
+        private readonly EcsFilter<AnimateExplosion> _explosionAnimations = null;
+        private readonly EcsFilter<ChainEvent> _chains = null;
 
         public void Run()
         {
+            if (_fieldChangers.GetEntitiesCount() > 0 || _chains.GetEntitiesCount() > 0 || _explosionAnimations.GetEntitiesCount() > 0)
+            {
+                return;
+            }
+
             foreach (int index in _filter)
             {
                 Vector2Int cellPosition = _filter.Get2(index);
