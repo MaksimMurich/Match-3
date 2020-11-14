@@ -19,7 +19,7 @@ namespace Match3.Configurations
         public float SwapDuration => _swapDuration;
         public float ExplosionScale => _explosionScale;
         public float ExplosionSeconds => _explosionSeconds;
-        public float UpdateCellPositionSeconds => _updateCellPositionSeconds;
+        public float CellMovingSeconds => _updateCellPositionSeconds;
         public Vector3 UpCellOnAnimate => _upCellOnAnimate;
 
     }

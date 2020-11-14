@@ -1,13 +1,16 @@
 using Leopotam.Ecs;
 using Match3.Assets.Scripts.Services;
 using Match3.Assets.Scripts.Systems.Game.Animations;
+using Match3.Assets.Scripts.Systems.Game.CellsExplosion;
 using Match3.Assets.Scripts.Systems.Game.Initialization;
+using Match3.Components.Game;
 using Match3.Components.Game.Events;
 using Match3.Configurations;
 using Match3.Systems.Game;
-using Match3.Systems.Game.Animations;
 using Match3.Systems.Game.Initialization;
+using Match3.Systems.Game.Swap;
 using Match3.Systems.Game.UserInputs;
+using Match3.Systems.Game.UserInputs.UI;
 using UnityEngine;
 
 namespace Match3
@@ -36,12 +39,13 @@ namespace Match3
 #endif
 
             _systems
-                // register systems
 
                 // initialization
                 .Add(new SetCellConfigSpawnRangesSystem())
                 .Add(new InitializeFieldSystem())
+                .Add(new InitializeFieldViewSystem())
                 .Add(new ConfigurateCameraSystem())
+                .Add(new AnimateInitializedCellsMovingSystem())
 
                 // user input event handlers
                 .Add(new OpenSettingsSystem())
@@ -50,32 +54,51 @@ namespace Match3
                 .Add(new CancelSettingsSystem())
                 .Add(new CloseAppSystem())
 
+                //select cell
+                .OneFrame<SelectCellAnimationRequest>()
+                .OneFrame<DeselectCellAnimationRequest>()
                 .Add(new SelectCellSystem())
-                .Add(new DeselectCellSystem())
-                .Add(new UserSwapSystem())
-
-                // update game field
-                .Add(new DetectChainsSystem())
-                .Add(new FillFieldSystem())
-                .Add(new CreateCellsViewSystem())
-                .Add(new AnimateCellViewPositionSystem())
-                .Add(new AnimateEmptySwapSystem())
-
-                // view effects
                 .Add(new ScaleSelectedCellSystem())
+
+                // swap
+                .OneFrame<SwapRequest>()
+                .Add(new UserSwapInputSystem())
+                .OneFrame<AnimateSwapRequest>()
+                .OneFrame<AnimateSwapBackRequest>()
+                .Add(new SwapSystem())
+                .Add(new AnimateSwapSystem())
+                .Add(new AnimateSwapBackSystem())
+
+                // deselect cell
+                .Add(new DeselectCellSystem())
                 .Add(new UnscaleDeselectedCellSystem())
-                .Add(new ChainExplosionSystem())
+
+                // create chains
+                .OneFrame<ChainEvent>()
+                .Add(new CreateChainsSystem()) // on SwapRequest or field was unlocked
+
+                // explode cells
+                .OneFrame<AnimateExplosionRequest>()
+                .Add(new ChargeCellsToExplosionSystem())
+                .Add(new AnimateCellsExplosionSystem()) // mark as AnimateExplosion while animating
+                .Add(new DestroyExplodedCellsViewSystem())
+                .Add(new DestroyExplodedCellsSystem())
+
+                // fill field
+                .OneFrame<AnimateFallDownRequest>()
+                .Add(new FallCellsToEmptySpacesSystem())
+                .Add(new AnimateFallDownSystem())
+
+                .OneFrame<CreateCellViewRequest>()
+                .Add(new CreateRandomCellsToEmptySpacesSystem())
+                .OneFrame<AnimateCreatedViewRequest>()
+                .Add(new CreateCellsViewSystem())
+                .Add(new AnimateCreatedViewSystem())
+
+                // reward
+                .OneFrame<RewardRequest>()
                 .Add(new ChainRewardSystem())
                 .Add(new AnimateRewardSystem())
-
-                // register one-frame components
-                .OneFrame<SelectEvent>()
-                .OneFrame<DeselectEvent>()
-                .OneFrame<ExplosionEvent>()
-                .OneFrame<ExplodedEvent>()
-                .OneFrame<EmptyViewEvent>()
-                .OneFrame<UpdateViewPositionEvent>()
-                .OneFrame<RewardEvent>()
 
                 // inject service instances here (order doesn't important), for example:
                 .Inject(_gameField)

@@ -10,14 +10,14 @@ namespace Match3.Assets.Scripts.Services
     {
         internal static bool HasChain(Dictionary<Vector2Int, EcsEntity> cells, Configuration _configuration)
         {
-            List<Chain> chains = GetChains(cells, _configuration);
+            List<ChainEvent> chains = GetChains(cells, _configuration);
 
             return chains.Count > 0;
         }
 
-        public static List<Chain> GetChains(Dictionary<Vector2Int, EcsEntity> cells, Configuration _configuration)
+        public static List<ChainEvent> GetChains(Dictionary<Vector2Int, EcsEntity> cells, Configuration _configuration)
         {
-            List<Chain> result = new List<Chain>();
+            List<ChainEvent> result = new List<ChainEvent>();
 
             for (int column = 0; column < _configuration.LevelWidth; column++)
             {
@@ -30,42 +30,94 @@ namespace Match3.Assets.Scripts.Services
                         continue;
                     }
 
-                    Vector2Int direction = new Vector2Int(0, 1);
-                    Chain horisontal = GetChain(position, direction, cells, _configuration.MinRewardableChain);
-
-                    if (horisontal.Size >= _configuration.MinRewardableChain)
-                    {
-                        result.Add(horisontal);
-                    }
-
-                    direction = new Vector2Int(1, 0);
-                    Chain vertical = GetChain(position, direction, cells, _configuration.MinRewardableChain);
-
-                    if (vertical.Size >= _configuration.MinRewardableChain)
-                    {
-                        result.Add(vertical);
-                    }
+                    result.AddRange(GetCellChains(cells, _configuration, position));
                 }
             }
 
             return result;
         }
 
-        private static Chain GetChain(Vector2Int startPosition, Vector2Int direction, Dictionary<Vector2Int, EcsEntity> cells, int minRewardableCHain)
+        public static bool CheckCellInChain(Dictionary<Vector2Int, EcsEntity> cells, Configuration _configuration, Vector2Int position)
+        {
+            Vector2Int direction = new Vector2Int(0, 1);
+            ChainEvent horisontalRight = GetChain(position, direction, cells);
+
+            if (horisontalRight.Size >= _configuration.MinRewardableChain)
+            {
+                return true;
+            }
+
+            direction = new Vector2Int(0, -1);
+            ChainEvent horisontalLeft = GetChain(position, direction, cells);
+
+            if (horisontalLeft.Size >= _configuration.MinRewardableChain)
+            {
+                return true;
+            }
+
+            direction = new Vector2Int(1, 0);
+            ChainEvent verticalUp = GetChain(position, direction, cells);
+
+            if (verticalUp.Size >= _configuration.MinRewardableChain)
+            {
+                return true;
+            }
+
+            direction = new Vector2Int(-1, 0);
+            ChainEvent verticalDown = GetChain(position, direction, cells);
+
+            if (verticalDown.Size >= _configuration.MinRewardableChain)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private static List<ChainEvent> GetCellChains(Dictionary<Vector2Int, EcsEntity> cells, Configuration _configuration, Vector2Int position)
+        {
+            List<ChainEvent> result = new List<ChainEvent>();
+
+            Vector2Int direction = new Vector2Int(0, 1);
+            ChainEvent horisontal = GetChain(position, direction, cells);
+
+            if (horisontal.Size >= _configuration.MinRewardableChain)
+            {
+                result.Add(horisontal);
+            }
+
+            direction = new Vector2Int(1, 0);
+            ChainEvent vertical = GetChain(position, direction, cells);
+
+            if (vertical.Size >= _configuration.MinRewardableChain)
+            {
+                result.Add(vertical);
+            }
+
+            return result;
+        }
+
+        private static ChainEvent GetChain(Vector2Int startPosition, Vector2Int direction, Dictionary<Vector2Int, EcsEntity> cells)
         {
             Vector2Int position = startPosition;
 
             if (!cells.ContainsKey(position))
             {
-                return new Chain();
+                return new ChainEvent();
             }
 
             CellType cellType = GetCellType(position, cells);
+
+            if (cellType == CellType.Unknown)
+            {
+                return new ChainEvent();
+            }
+
             bool chained = CheckCellChainedBefore(direction, position, cellType, cells);
 
             if (chained)
             {
-                return new Chain();
+                return new ChainEvent();
             }
 
             int chainSize = 0;
@@ -76,7 +128,7 @@ namespace Match3.Assets.Scripts.Services
                 position += direction;
             }
 
-            return new Chain() { Position = startPosition, Direction = direction, Size = chainSize };
+            return new ChainEvent() { Position = startPosition, Direction = direction, Size = chainSize };
         }
 
         private static bool CheckCellChainedBefore(Vector2Int direction, Vector2Int position, CellType cellType, Dictionary<Vector2Int, EcsEntity> cells)
@@ -96,7 +148,14 @@ namespace Match3.Assets.Scripts.Services
 
         private static CellType GetCellType(Vector2Int position, Dictionary<Vector2Int, EcsEntity> cells)
         {
-            return cells[position].Ref<Cell>().Unref().Configuration.Type;
+            if (cells[position].Has<EmptySpace>())
+            {
+                return CellType.Unknown;
+            }
+            else
+            {
+                return cells[position].Ref<Cell>().Unref().Configuration.Type;
+            }
         }
     }
 }

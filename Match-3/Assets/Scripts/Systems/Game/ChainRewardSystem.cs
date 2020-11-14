@@ -7,20 +7,18 @@ namespace Match3.Systems.Game
 {
     public sealed class ChainRewardSystem : IEcsRunSystem
     {
+        private readonly EcsWorld _world = null;
         private readonly GameField _gameField = null;
         private readonly PlayerState _playerState = null;
-        private readonly EcsFilter<Chain>.Exclude<Rewarded> _filter = null;
+        private readonly EcsFilter<ChainEvent> _filter = null;
 
         public void Run()
         {
             foreach (int index in _filter)
             {
-                _filter.GetEntity(index).Set<Rewarded>();
-                _filter.GetEntity(index).Set<RewardEvent>();
-
                 int reward = 0;
 
-                Chain chain = _filter.Get1(index);
+                ChainEvent chain = _filter.Get1(index);
 
                 for (int i = 0; i < chain.Size; i++)
                 {
@@ -29,6 +27,7 @@ namespace Match3.Systems.Game
                 }
 
                 _playerState.Score += reward;
+                _world.NewEntity().Set<RewardRequest>();
             }
         }
 

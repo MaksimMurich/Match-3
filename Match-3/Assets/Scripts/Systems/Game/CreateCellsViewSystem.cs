@@ -1,7 +1,6 @@
 ﻿using Leopotam.Ecs;
 using Match3.Assets.Scripts.Services;
 using Match3.Components.Game;
-using Match3.Components.Game.Events;
 using Match3.Configurations;
 using Match3.UnityComponents;
 using UnityEngine;
@@ -12,7 +11,7 @@ namespace Match3.Systems.Game
     {
         private readonly ObjectPool _objectPool = null;
         private readonly Configuration _configuration = null;
-        private readonly EcsFilter<Cell, EmptyViewEvent, Vector2Int> _filter = null;
+        private readonly EcsFilter<Cell, CreateCellViewRequest, Vector2Int> _filter = null;
 
         public void Run()
         {
@@ -24,7 +23,7 @@ namespace Match3.Systems.Game
 
                 cell.View = view;
                 view.transform.position = new Vector2(_filter.Get3(index).x, _configuration.LevelHeight);
-                view.Entity.Set<UpdateViewPositionEvent>();
+                view.Entity.Set<AnimateCreatedViewRequest>();
             }
         }
     }
