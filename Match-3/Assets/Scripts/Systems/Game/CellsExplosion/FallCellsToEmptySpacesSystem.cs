@@ -65,7 +65,7 @@ namespace Match3.Assets.Scripts.Systems.Game.CellsExplosion
 
             EcsEntity emptyEntity = _gameField.Cells[position];
             EcsEntity extenderEntity = _gameField.Cells[extenderPosition];
-            _gameField.Cells.Remove(position); 
+            _gameField.Cells.Remove(position);
             _gameField.Cells.Remove(extenderPosition);
             _gameField.Cells.Add(position, extenderEntity);
             _gameField.Cells.Add(extenderPosition, emptyEntity);

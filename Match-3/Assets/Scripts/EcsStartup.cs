@@ -95,25 +95,10 @@ namespace Match3
                 .Add(new CreateCellsViewSystem())
                 .Add(new AnimateCreatedViewSystem())
 
-
-                //// update game field
-                //.Add(new FillFieldSystem())
-                //.Add(new CreateCellsViewSystem())
-                //.Add(new AnimateCellViewPositionSystem())
-                //.Add(new AnimateEmptySwapSystem())
-
-                //// view effects
-                //.Add(new ChainExplosionSystem())
+                // reward
                 .OneFrame<RewardRequest>()
                 .Add(new ChainRewardSystem())
                 .Add(new AnimateRewardSystem())
-
-                // register one-frame components
-                //.OneFrame<UpdateViewPositionRequest>()
-                //.OneFrame<RewardRequest>()
-                //.OneFrame<ExplosionRequest>()
-                //.OneFrame<ExplodedEvent>()
-                //.OneFrame<EmptyViewEvent>()
 
                 // inject service instances here (order doesn't important), for example:
                 .Inject(_gameField)

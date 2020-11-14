@@ -1,5 +1,4 @@
 ﻿using Leopotam.Ecs;
-using Match3.Assets.Scripts.Components.Game.Bonuces;
 using Match3.Assets.Scripts.Services;
 using Match3.Components.Game;
 using Match3.Components.Game.Events;
@@ -44,7 +43,7 @@ namespace Match3.Systems.Game.Swap
 
                 List<ChainEvent> chains = GameFieldAnalyst.GetChains(_gameField.Cells, _configuration);
 
-                if (chains.Count == 0 && !swapCell.Has<FiveInRowBonus>() && !secondCell.Has<FiveInRowBonus>())
+                if (chains.Count == 0)
                 {
                     _gameField.Cells[cellPosition] = swapCell;
                     _gameField.Cells[targetPosition] = secondCell;

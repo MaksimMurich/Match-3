@@ -37,7 +37,6 @@ namespace Match3.Systems.Game
         private void AddChain(Vector2Int position, Vector2Int direction, int size)
         {
             var chainEntity = _ecsWorld.NewEntity();
-            //chainEntity.Set<ExplosionRequest>();
 
             ChainEvent chain = new ChainEvent()
             {

@@ -73,8 +73,6 @@
     <Compile Include="Assets\Scripts\Components\Game\AnimateCreatedViewRequest.cs" />
     <Compile Include="Assets\Scripts\Components\Game\AnimateExplosion.cs" />
     <Compile Include="Assets\Scripts\Components\Game\AnimateFallDownRequest.cs" />
-    <Compile Include="Assets\Scripts\Components\Game\Bonuces\FiveInRowBonus.cs" />
-    <Compile Include="Assets\Scripts\Components\Game\Bonuces\FourInRowBonus.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Cell.cs" />
     <Compile Include="Assets\Scripts\Components\Game\CellType.cs" />
     <Compile Include="Assets\Scripts\Components\Game\ChainEvent.cs" />
@@ -94,8 +92,6 @@
     <Compile Include="Assets\Scripts\Components\Game\Events\Swap\AnimateSwapRequest.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\Swap\SwapRequest.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Events\UpdateViewPositionRequest.cs" />
-    <Compile Include="Assets\Scripts\Components\Game\FilledChain.cs" />
-    <Compile Include="Assets\Scripts\Components\Game\MoveBack.cs" />
     <Compile Include="Assets\Scripts\Components\Game\Selected.cs" />
     <Compile Include="Assets\Scripts\Configurations\AnimationsConfiguration.cs" />
     <Compile Include="Assets\Scripts\Configurations\CellConfiguration.cs" />
@@ -107,9 +103,7 @@
     <Compile Include="Assets\Scripts\Services\GameFieldAnalyst.cs" />
     <Compile Include="Assets\Scripts\Services\IClone.cs" />
     <Compile Include="Assets\Scripts\Services\ObjectPool.cs" />
-    <Compile Include="Assets\Scripts\Systems\Game\Animations\AnimateCellViewPositionSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Animations\AnimateRewardSystem.cs" />
-    <Compile Include="Assets\Scripts\Systems\Game\Animations\ChainExplosionSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Animations\ScaleSelectedCellSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Animations\UnscaleDeselectedCellSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\CellsExplosion\AnimateCellsExplosionSystem.cs" />
@@ -121,7 +115,6 @@
     <Compile Include="Assets\Scripts\Systems\Game\ChainRewardSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\CreateCellsViewSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\CreateChainsSystem.cs" />
-    <Compile Include="Assets\Scripts\Systems\Game\FillFieldSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\AnimateInitializedCellsMovingSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\ConfigurateCameraSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\Game\Initialization\InitializeFieldSystem.cs" />

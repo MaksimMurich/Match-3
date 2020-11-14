@@ -8,15 +8,9 @@ namespace Match3.Systems.Game.UserInputs
 {
     public sealed class SelectCellSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<ChangeFieldAnimating> _changeFieldFilter = null;
-        private readonly EcsFilter<ChainEvent>.Exclude<FilledChain> _chainFilter = null;
-
         public void Run()
         {
-            //bool isFieldChanging = _changeFieldFilter.GetEntitiesCount() > 0;
-            //bool hasChais = _chainFilter.GetEntitiesCount() > 0;
-
-            if (/*hasChais || *//* isFieldChanging ||*/ !Input.GetMouseButtonDown(0))
+            if (!Input.GetMouseButtonDown(0))
             {
                 return;
             }
