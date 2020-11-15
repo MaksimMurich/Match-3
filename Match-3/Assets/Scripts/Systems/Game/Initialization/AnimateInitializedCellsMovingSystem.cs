@@ -17,11 +17,11 @@ namespace Match3.Systems.Game.Initialization
             {
                 for (int row = 0; row < _configuration.LevelHeight; row++)
                 {
-                    EcsEntity entity = _gameField.Cells[new Vector2Int(row, column)];
+                    EcsEntity entity = _gameField.Cells[new Vector2Int(column, row)];
                     ref Cell cell = ref entity.Ref<Cell>().Unref();
-                    _gameField.Cells[new Vector2Int(row, column)].Set<ChangeFieldAnimating>();
+                    _gameField.Cells[new Vector2Int(column, row)].Set<ChangeFieldAnimating>();
 
-                    Vector3 targetPosition = new Vector3(row, column);
+                    Vector3 targetPosition = new Vector3(column, row);
                     cell.View.transform
                         .DOMove(targetPosition, _configuration.Animation.CellMovingSeconds)
                         .OnComplete(() => RemoveFieldChangingState(entity));
